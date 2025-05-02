@@ -184,13 +184,13 @@ export const AIChat: React.FC<AIChatProps> = () => {
             onClick={() => phantom?.connect()}
             className="flex items-center gap-3 bg-gradient-to-br from-[#2B3542]/90 to-[#333D4A]/90 hover:from-[#333D4A]/90 hover:to-[#2B3542]/90 text-white px-8 py-4 rounded-xl transition-all border border-[#fafafa]/20"
           >
-            <Image
+{/*             <Image
               src="/phantom-icon.png"
               alt="Phantom"
               width={28}
               height={28}
               className="rounded-full"
-            />
+            /> */}
             <span className="font-medium text-lg">Connect Wallet</span>
           </button>
         </div>
