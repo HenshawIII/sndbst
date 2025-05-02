@@ -173,40 +173,26 @@ export const AIChat: React.FC<AIChatProps> = () => {
         <div className="flex-1 flex flex-col items-center justify-center space-y-8 p-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Connect Your Phantom Wallet
+              Connect to Phantom
             </h1>
             <p className="text-lg text-gray-400 max-w-md">
-              To access your AI agent, please connect your Phantom wallet first. This ensures secure and seamless interaction with the Solana blockchain.
+              Please connect your Phantom wallet to access your AI agent
             </p>
           </div>
           
-          <div className="flex flex-col items-center space-y-4">
-            <button
-              onClick={() => phantom?.connect()}
-              className="flex items-center gap-3 bg-[#2658DD] hover:bg-[#1E4BC0] text-white px-6 py-3 rounded-xl transition-colors"
-            >
-              <Image
-                src="/phantom-icon.png"
-                alt="Phantom"
-                width={24}
-                height={24}
-                className="rounded-full"
-              />
-              <span className="font-medium">Connect Phantom Wallet</span>
-            </button>
-            
-            <div className="text-sm text-gray-500">
-              Don't have Phantom?{" "}
-              <a
-                href="https://phantom.app/download"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#2658DD] hover:text-[#1E4BC0] transition-colors"
-              >
-                Download it here
-              </a>
-            </div>
-          </div>
+          <button
+            onClick={() => phantom?.connect()}
+            className="flex items-center gap-3 bg-gradient-to-br from-[#2B3542]/90 to-[#333D4A]/90 hover:from-[#333D4A]/90 hover:to-[#2B3542]/90 text-white px-8 py-4 rounded-xl transition-all border border-[#fafafa]/20"
+          >
+            <Image
+              src="/phantom-icon.png"
+              alt="Phantom"
+              width={28}
+              height={28}
+              className="rounded-full"
+            />
+            <span className="font-medium text-lg">Connect Wallet</span>
+          </button>
         </div>
       ) : (
         <div className="flex-1 flex flex-col overflow-hidden rounded-2xl p-6 backdrop-blur-sm">
