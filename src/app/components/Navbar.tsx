@@ -192,7 +192,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          {authenticated && user?.wallet && (
+          {/* {authenticated && user?.wallet && (
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={toggleDropdown}
@@ -216,7 +216,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </div>
               )}
             </div>
-          )}
+          )} */}
           {authenticated && (
             <button
               onClick={handleLogoutClick}

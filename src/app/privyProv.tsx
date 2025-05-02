@@ -19,9 +19,7 @@ export default function Providers({children}: {children: React.ReactNode}) {
             
           },
           loginMethods: ['email', 'google', 'twitter',],
-        embeddedWallets: {
-          createOnLogin: undefined
-        }
+        
       }}
     >
       {children}
