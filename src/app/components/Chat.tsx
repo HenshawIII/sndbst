@@ -106,7 +106,10 @@ export const AIChat: React.FC<AIChatProps> = () => {
       ).use(TokenPlugin);
       // .use(DefiPlugin)
 
+      console.log("Available agent actions:", agent.actions);
+      
       const tools = createVercelAITools(agent, agent.actions);
+      console.log("Created tools:", tools);
       return tools;
     }
   }, [phantom, publicKey]);
@@ -122,12 +125,13 @@ export const AIChat: React.FC<AIChatProps> = () => {
     setIsLoading(true);
 
     try {
+      console.log("Sending message with tools:", solanaTools);
       const result = await generateText({
         model: myProvider.languageModel("chat-model"),
         messages: updatedMessages,
         system:
           `You are a helpful agent that can interact onchain using the Solana Agent Kit. You are
-        empowered to interact onchain using your tools. If you need funds you can request it from the user and provide your wallet details. If there is a 5XX
+        empowered to interact onchain using your tools. You have access to the following tools: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. If you need funds you can request it from the user and provide your wallet details. If there is a 5XX
         (internal) HTTP error code, ask the user to try again later. If someone asks you to do something you
         can't do with your currently available tools, you must say so, and encourage them to implement it
         themselves using the Solana Agent Kit, recommend they go to https://www.solanaagentkit.xyz for more information. Be
@@ -138,7 +142,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
         tools: solanaTools,
       });
 
-      console.log(result);
+      console.log("AI response:", result);
 
       setMessages([
         ...updatedMessages,
@@ -184,13 +188,13 @@ export const AIChat: React.FC<AIChatProps> = () => {
             onClick={() => phantom?.connect()}
             className="flex items-center gap-3 bg-gradient-to-br from-[#2B3542]/90 to-[#333D4A]/90 hover:from-[#333D4A]/90 hover:to-[#2B3542]/90 text-white px-8 py-4 rounded-xl transition-all border border-[#fafafa]/20"
           >
-            <Image
+            {/* <Image
               src="/phantom-icon.png"
               alt="Phantom"
               width={28}
               height={28}
               className="rounded-full"
-            />
+            /> */}
             <span className="font-medium text-lg">Connect Wallet</span>
           </button>
         </div>

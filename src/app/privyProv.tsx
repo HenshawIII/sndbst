@@ -16,9 +16,10 @@ export default function Providers({children}: {children: React.ReactNode}) {
             accentColor: '#3351FF',
             showWalletLoginFirst: false,
             // logo: 'https://res.cloudinary.com/dbkthd6ck/image/upload/v1737309623/chainfren_logo_eey39b.png',
+            walletList: ['phantom'],
             
           },
-          loginMethods: ['email', 'google', 'twitter',],
+          loginMethods: ['email', 'google','twitter', 'wallet'],
         
       }}
     >
