@@ -1,29 +1,59 @@
-'use client';
+  'use client';
 
-import {PrivyProvider} from '@privy-io/react-auth';
+  import {PrivyProvider} from '@privy-io/react-auth';
+  import { qMainnet, mainnet, metachain, baseSepolia } from 'viem/chains';
+  import { defineChain } from 'viem';
+  import {toSolanaWalletConnectors} from "@privy-io/react-auth/solana";
+  
 
-export default function Providers({children}: {children: React.ReactNode}) {
-  return (
-    <PrivyProvider
-      appId="cma6k9trr00vol60mdysm5ic8"
-      clientId="client-WY6L7Axrvy2TU4bfBJh9ccwtJ9AtNpzsD5T1Gg15dhWH5"
-      config={{
-        // Create embedded wallets for users who don't have a wallet
-        appearance: {
-            landingHeader: '',
-            loginMessage: 'Phantom Agent',
-            theme: 'light',
-            accentColor: '#3351FF',
-            showWalletLoginFirst: false,
-            // logo: 'https://res.cloudinary.com/dbkthd6ck/image/upload/v1737309623/chainfren_logo_eey39b.png',
-            walletList: ['phantom'],
+  export const ethereumMainnet = defineChain({
+    id: 1, // Ethereum Mainnet chain ID
+    name: 'Ethereum Mainnet',
+    network: 'homestead', // This is the network name used for Ethereum Mainnet
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ether',
+      symbol: 'ETH',
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://cloudflare-eth.com'],
+      },
+    },
+    blockExplorers: {
+      default: { name: 'Etherscan', url: 'https://etherscan.io' },
+    },
+  });
+
+  export default function Providers({children}: {children: React.ReactNode}) {
+    return (
+      <PrivyProvider
+        appId={process.env.NEXT_PUBLIC_PRIVYAPP_ID ?? ""}
+        clientId={process.env.NEXT_PUBLIC_PRIVYCLIENT_ID ?? ""}
+        config={{
+          // Create embedded wallets for users who don't have a wallet
+          appearance: {
+              landingHeader: '',
+              loginMessage: 'Phantom Agent',
+              theme: 'light',
+              accentColor: '#3351FF',
+              showWalletLoginFirst: false,
+              walletChainType: 'solana-only',
+              walletList: [ 'phantom'],
+              // walletConnectors: ['phantom'],
+            },
+            loginMethods: ['email','wallet' ,'google','twitter'],
+            externalWallets: {solana: {connectors: toSolanaWalletConnectors()}},
+           
             
-          },
-          loginMethods: ['email', 'google','twitter', 'wallet'],
-        
-      }}
-    >
-      {children}
-    </PrivyProvider>
-  );
-}
+            
+            // walletConnectors: ['phantom'],
+            
+          
+          
+        }}
+      >
+        {children}
+      </PrivyProvider>
+    );
+  }
