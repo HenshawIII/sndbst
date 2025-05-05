@@ -74,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleSidebar}
-        className="md:hidden fixed top-6 right-4 z-[1001] text-white p-2"
+        className="md:hidden relative top-6 !left-4 z-[1001] text-white p-2"
       >
         <Icon icon="solar:hamburger-menu-bold" width={24} height={24} />
       </button>
@@ -153,7 +153,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       </div>
 
       {/* Desktop Navbar */}
-      <div className="hidden md:flex fixed top-0 left-0 w-full z-[1000] bg-transparent backdrop-blur-sm items-center justify-between h-24 px-12">
+      <div className="hidden md:flex relative top-0 left-0 w-full z-[1000] bg-transparent backdrop-blur-sm items-center justify-between h-24 px-12">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">

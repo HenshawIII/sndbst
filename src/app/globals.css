@@ -46,4 +46,17 @@
 
 .prose code {
   @apply text-gray-300 bg-gray-800 px-1 py-0.5 rounded;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
 } 

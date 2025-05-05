@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="300" cy="300" r="250" fill="url(#gradient)" />
+  
+  <!-- Robot Head -->
+  <rect x="200" y="150" width="200" height="200" rx="20" fill="#3351FF" />
+  
+  <!-- Eyes -->
+  <circle cx="250" cy="220" r="20" fill="white" />
+  <circle cx="350" cy="220" r="20" fill="white" />
+  <circle cx="250" cy="220" r="10" fill="#20242D" />
+  <circle cx="350" cy="220" r="10" fill="#20242D" />
+  
+  <!-- Antenna -->
+  <rect x="290" y="100" width="20" height="50" fill="#3351FF" />
+  <circle cx="300" cy="100" r="15" fill="#3351FF" />
+  
+  <!-- Mouth -->
+  <rect x="250" y="280" width="100" height="10" rx="5" fill="white" />
+  
+  <!-- Decorative Elements -->
+  <circle cx="300" cy="300" r="200" stroke="url(#gradient2)" stroke-width="2" stroke-dasharray="10 10" />
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 300) rotate(90) scale(250)">
+      <stop offset="0%" stop-color="#3351FF" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#3351FF" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="gradient2" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3351FF" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#3351FF" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+</svg> 

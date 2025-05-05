@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
 import { Toaster, toast } from "sonner";
 import AuthGuard from "../components/AuthGuard";
-
+import TokenBanner from "../components/TokenBanner";
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +37,9 @@ export default function Dashboard() {
 
   return (
     <AuthGuard>
+       
       <div className="bg-[radial-gradient(circle,#242A37,#29313F,#2C3644,#3D4854)] min-h-screen flex flex-col">
+       
         <Navbar />
         <div className="flex-1 flex flex-col">
           {/* <SolanaTransactionExample /> */}
