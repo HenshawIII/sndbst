@@ -18,6 +18,10 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import TokenPlugin from "@solana-agent-kit/plugin-token";
+import DefiPlugin from "@solana-agent-kit/plugin-defi";
+import MiscPlugin from "@solana-agent-kit/plugin-misc";
+// import NftPlugin from "@solana-agent-kit/plugin-nft";
+// import BlinksPlugin from "@solana-agent-kit/plugin-blinks";
 import { usePhantomWallet } from "./PhantomWallet";
 import Image from "next/image";
 // import DefiPlugin from "@solana-agent-kit/plugin-defi";
@@ -41,7 +45,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const [showClearModal, setShowClearModal] = useState(false);
   const { phantom, connected, publicKey } = usePhantomWallet();
   const bottomRef = useRef<HTMLDivElement | null>(null);
-  console.log("publicKey", publicKey);
+  // console.log("publicKey", publicKey);
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
@@ -124,9 +128,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
           },
         },
         process.env.NEXT_PUBLIC_RPC_URL as string,
-        {}
-      ).use(TokenPlugin);
-      // .use(DefiPlugin)
+        {
+          COINGECKO_DEMO_API_KEY: "CG-oSn1QEGnT1dixqQi3cTrRHDT"
+        }
+      ).use(TokenPlugin)
+      // .use(DefiPlugin);
+      .use(MiscPlugin);
+      // .use(NftPlugin)
+      // .use(BlinksPlugin);
 
       console.log("Available agent actions:", agent.actions);
       
@@ -168,7 +177,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
         Mint address for $SEND is SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa
 
         Recent conversation context:
-        ${recentContext}
+        ${messages.slice(-3).map(msg => 
+          `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`
+        ).join('\n')}
 
         Use this context to provide more relevant and contextual responses. If the user refers to something from the previous conversation, make sure to address it appropriately.`,
         maxSteps: 5,
@@ -184,13 +195,19 @@ export const AIChat: React.FC<AIChatProps> = () => {
           content: result.text || "Sorry, I didn't quite get that.",
         },
       ]);
-    } catch (error) {
+    } catch (error: any) {
       console.error("AI error:", error);
+      let errorMessage = "Oops! Something went wrong.";
+      
+      if (error?.message?.includes("Rate limit reached")) {
+        errorMessage = "I'm currently experiencing high demand. Please try again in about 30 seconds.";
+      }
+      
       setMessages([
         ...updatedMessages,
         {
           role: "assistant",
-          content: "Oops! Something went wrong.",
+          content: errorMessage,
         },
       ]);
     }

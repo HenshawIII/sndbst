@@ -11,7 +11,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "What is Phantom AI Agent?",
-    answer: "Phantom AI Agent is an intelligent assistant powered by Solana Agent Kit that can help you interact with the Solana blockchain. It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
+    answer: "Phantom AI Agent is an intelligent assistant powered by Solana Agent Kit that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
   },
   {
     question: "How do I connect my wallet?",
