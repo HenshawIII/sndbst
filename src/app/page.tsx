@@ -10,9 +10,10 @@ import { usePrivy } from '@privy-io/react-auth';
 import Image from "next/image";
 import TokenBanner from "./components/TokenBanner";
 import Link from "next/link";
-// import { AIChat } from "./components/Chat";
+import { AIChat } from './components/Chat';
 import FAQ from "./components/FAQ";
 import StartTrading from "./components/StartTrading";
+import TestCoinGecko from './components/TestCoinGecko';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -171,7 +172,11 @@ export default function LandingPage() {
         }}
       />
 
-      
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
+        
+        {/* <TestCoinGecko /> */}
+        
+      </div>
       
     </div>
     </>

@@ -18,12 +18,13 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import TokenPlugin from "@solana-agent-kit/plugin-token";
-import DefiPlugin from "@solana-agent-kit/plugin-defi";
+// import DefiPlugin from "@solana-agent-kit/plugin-defi";
 import MiscPlugin from "@solana-agent-kit/plugin-misc";
-// import NftPlugin from "@solana-agent-kit/plugin-nft";
-// import BlinksPlugin from "@solana-agent-kit/plugin-blinks";
+import NftPlugin from "@solana-agent-kit/plugin-nft";
+import BlinksPlugin from "@solana-agent-kit/plugin-blinks";
 import { usePhantomWallet } from "./PhantomWallet";
 import Image from "next/image";
+import { createAgentTools } from '../utils/agentTools';
 // import DefiPlugin from "@solana-agent-kit/plugin-defi";
 
 type AIChatProps = {
@@ -99,7 +100,6 @@ export const AIChat: React.FC<AIChatProps> = () => {
             if (!phantom) throw new Error("Phantom not initialized.");
             const transactionHash = await phantom.solana.sendTransaction(tx);
             return transactionHash;
-
           },
           signAllTransactions: async <
             T extends Transaction | VersionedTransaction,
@@ -124,23 +124,34 @@ export const AIChat: React.FC<AIChatProps> = () => {
             if (!phantom) throw new Error("Phantom not initialized.");
             const transactionHash = await phantom.solana.signAndSendTransaction(tx);
             return { signature: transactionHash };
-
           },
         },
         process.env.NEXT_PUBLIC_RPC_URL as string,
         {
-          COINGECKO_DEMO_API_KEY: "CG-oSn1QEGnT1dixqQi3cTrRHDT"
+          COINGECKO_DEMO_API_KEY: process.env.NEXT_PUBLIC_COINGECKO_API_KEY || "CG-oSn1QEGnT1dixqQi3cTrRHDT"
         }
       ).use(TokenPlugin)
-      // .use(DefiPlugin);
-      .use(MiscPlugin);
-      // .use(NftPlugin)
-      // .use(BlinksPlugin);
+      .use(MiscPlugin)
+      .use(BlinksPlugin)
+      // .use(NftPlugin);
 
       console.log("Available agent actions:", agent.actions);
       
+      // Only use Vercel AI tools
       const tools = createVercelAITools(agent, agent.actions);
       console.log("Created tools:", tools);
+      console.log("Tool descriptions:", Object.entries(tools).map(([name, tool]) => ({
+        name,
+        description: tool.description
+      })));
+      
+      // Log CoinGecko related tools
+      const coingeckoTools = Object.entries(tools).filter(([name, tool]) => 
+        name.toLowerCase().includes('coingecko') || 
+        (tool.description && tool.description.toLowerCase().includes('coingecko'))
+      );
+      console.log("CoinGecko related tools:", coingeckoTools);
+      
       return tools;
     }
   }, [phantom, publicKey]);
@@ -168,7 +179,63 @@ export const AIChat: React.FC<AIChatProps> = () => {
         messages: updatedMessages,
         system:
           `You are a helpful agent that can interact onchain using the Solana Agent Kit. You are
-        empowered to interact onchain using your tools. You have access to the following tools: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. If you need funds you can request it from the user and provide your wallet details. If there is a 5XX
+        empowered to interact onchain using your tools. You have access to the following tools: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
+
+       
+        IMPORTANT: Use CoinGecko API ONLY when:
+        1. The user explicitly mentions "CoinGecko"
+        2. The user specifically asks for real-time market data that can't be obtained from other sources
+        3. The user requests cryptocurrency price information that isn't available through other tools
+        4. The user mentions "trending" - use the trending endpoint immediately
+
+        DO NOT use CoinGecko when:
+        1. The information can be obtained from other available tools
+        2. The user hasn't specifically requested market data
+        3. The query can be answered using general knowledge or other tools
+
+        When CoinGecko is needed, use these endpoints:
+        Base URL: https://api.coingecko.com/api/v3/
+        API Key: CG-oSn1QEGnT1dixqQi3cTrRHDT
+
+        When making API calls:
+        1. Wait for the data to be fetched and processed
+        2. Format the data in a readable way
+        3. Present the complete response only when all data is ready
+
+        Available CoinGecko endpoints:
+        - Price endpoint: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+          Required params: ids (comma-separated token IDs), vs_currencies (comma-separated currency codes)
+        
+        - Market chart: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+          Required params: vs_currency (currency code), days (number of days)
+        
+        - Coin details: https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+          Required params: id (coin ID), localization (boolean), tickers (boolean), market_data (boolean)
+        
+        - Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+          Use this endpoint whenever the user mentions "trending" or asks about trending tokens
+          No required params, returns top 7 trending coins
+        
+        - Top NFTs: https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc&per_page=10&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+          Required params: order (sort order), per_page (number of results)
+
+        When making API calls, ensure you include all required parameters and the API key in the URL. For example:
+        - For prices: Always include both 'ids' and 'vs_currencies'
+        - For market charts: Always include both 'vs_currency' and 'days'
+        - For coin details: Always include 'id' and the boolean flags
+        - For trending: Use the trending endpoint directly when user mentions "trending"
+
+        When users ask about prices, market data, trending tokens, or NFTs:
+        1. Wait for the API call to complete
+        2. Process the response data
+        3. Format the data in a readable way
+        4. Present the complete response only when everything is ready
+
+        Always include the API key as a query parameter (x_cg_demo_api_key).
+
+        For all other queries, use your standard tools and capabilities without involving CoinGecko.
+
+        If you need funds you can request it from the user and provide your wallet details. If there is a 5XX
         (internal) HTTP error code, ask the user to try again later. If someone asks you to do something you
         can't do with your currently available tools, you must say so, and encourage them to implement it
         themselves using the Solana Agent Kit, recommend they go to https://www.solanaagentkit.xyz for more information. Be
@@ -184,6 +251,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
         Use this context to provide more relevant and contextual responses. If the user refers to something from the previous conversation, make sure to address it appropriately.`,
         maxSteps: 5,
         tools: solanaTools,
+      }).catch((error: Error) => {
+        console.error("Detailed error:", {
+          message: error.message,
+          cause: error.cause,
+          stack: error.stack,
+          name: error.name
+        });
+        throw error;
       });
 
       console.log("AI response:", result);

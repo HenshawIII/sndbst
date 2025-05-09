@@ -3,14 +3,30 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/jupag/:path*',
-        destination: 'https://tokens.jup.ag/:path*',
+        source: "/api/agent-tools",
+        destination: "https://api.solanaagentkit.xyz/api/agent-tools",
       },
       {
-        source: '/api/coingecko/:path*',
-        destination: 'https://api.coingecko.com/api/v3/:path*?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT'
+        source: "/api/defi",
+        destination: "https://api.solanaagentkit.xyz/api/defi",
+      },
+      {
+        source: "/api/log-coingecko",
+        destination: "https://api.solanaagentkit.xyz/api/log-coingecko",
+      },
+      {
+        source: "/api/coingecko/:path*",
+        destination: "https://api.coingecko.com/api/v3/:path*",
       },
     ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
   async headers() {
     return [

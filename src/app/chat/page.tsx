@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar";
 import { Toaster, toast } from "sonner";
 import AuthGuard from "../components/AuthGuard";
 import TokenBanner from "../components/TokenBanner";
+import TestCoinGecko from "../components/TestCoinGecko";
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
@@ -53,6 +54,7 @@ export default function Dashboard() {
           }}
         />
       </div>
+      {/* <TestCoinGecko /> */}
     </AuthGuard>
   );
 }
