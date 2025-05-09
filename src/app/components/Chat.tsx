@@ -177,78 +177,23 @@ export const AIChat: React.FC<AIChatProps> = () => {
       const result = await generateText({
         model: myProvider.languageModel("chat-model"),
         messages: updatedMessages,
-        system:
-          `You are a helpful agent that can interact onchain using the Solana Agent Kit. You are
-        empowered to interact onchain using your tools. You have access to the following tools: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
+        system: `You are a helpful agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
 
-       
-        IMPORTANT: Use CoinGecko API ONLY when:
-        1. The user explicitly mentions "CoinGecko"
-        2. The user specifically asks for real-time market data that can't be obtained from other sources
-        3. The user requests cryptocurrency price information that isn't available through other tools
-        4. The user mentions "trending" - use the trending endpoint immediately
-
-        DO NOT use CoinGecko when:
-        1. The information can be obtained from other available tools
-        2. The user hasn't specifically requested market data
-        3. The query can be answered using general knowledge or other tools
-
-        When CoinGecko is needed, use these endpoints:
-        Base URL: https://api.coingecko.com/api/v3/
-        API Key: CG-oSn1QEGnT1dixqQi3cTrRHDT
-
-        When making API calls:
-        1. Wait for the data to be fetched and processed
-        2. Format the data in a readable way
-        3. Present the complete response only when all data is ready
-
-        Available CoinGecko endpoints:
-        - Price endpoint: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-          Required params: ids (comma-separated token IDs), vs_currencies (comma-separated currency codes)
+        For CoinGecko API, use these endpoints:
+        1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+           Replace {coin_name} with the coin user asks about
         
-        - Market chart: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-          Required params: vs_currency (currency code), days (number of days)
-        
-        - Coin details: https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-          Required params: id (coin ID), localization (boolean), tickers (boolean), market_data (boolean)
-        
-        - Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-          Use this endpoint whenever the user mentions "trending" or asks about trending tokens
-          No required params, returns top 7 trending coins
-        
-        - Top NFTs: https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc&per_page=10&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-          Required params: order (sort order), per_page (number of results)
+        2. Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+           Use this when user mentions "trending"
 
-        When making API calls, ensure you include all required parameters and the API key in the URL. For example:
-        - For prices: Always include both 'ids' and 'vs_currencies'
-        - For market charts: Always include both 'vs_currency' and 'days'
-        - For coin details: Always include 'id' and the boolean flags
-        - For trending: Use the trending endpoint directly when user mentions "trending"
+        For all other queries, use standard tools without CoinGecko.
 
-        When users ask about prices, market data, trending tokens, or NFTs:
-        1. Wait for the API call to complete
-        2. Process the response data
-        3. Format the data in a readable way
-        4. Present the complete response only when everything is ready
-
-        Always include the API key as a query parameter (x_cg_demo_api_key).
-
-        For all other queries, use your standard tools and capabilities without involving CoinGecko.
-
-        If you need funds you can request it from the user and provide your wallet details. If there is a 5XX
-        (internal) HTTP error code, ask the user to try again later. If someone asks you to do something you
-        can't do with your currently available tools, you must say so, and encourage them to implement it
-        themselves using the Solana Agent Kit, recommend they go to https://www.solanaagentkit.xyz for more information. Be
-        concise and helpful with your responses. Refrain from restating your tools' descriptions unless it is explicitly requested.
-        
         Mint address for $SEND is SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa
 
-        Recent conversation context:
-        ${messages.slice(-3).map(msg => 
+        Recent context:
+        ${messages.slice(-1).map(msg => 
           `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`
-        ).join('\n')}
-
-        Use this context to provide more relevant and contextual responses. If the user refers to something from the previous conversation, make sure to address it appropriately.`,
+        ).join('\n')}`,
         maxSteps: 5,
         tools: solanaTools,
       }).catch((error: Error) => {
