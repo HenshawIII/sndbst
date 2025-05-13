@@ -53,7 +53,7 @@ export default function Docs() {
             <div className="prose prose-invert max-w-none">
               <p className="text-gray-300 mb-6">
                 Coinbeast Agent is designed to be your intelligent companion in the world of cryptocurrency trading. 
-                Let's walk through the setup process and basic usage.
+                Let us walk through the setup process and basic usage.
               </p>
 
               <div className="bg-[#20242D] rounded-xl p-6 mb-6">
@@ -65,7 +65,7 @@ export default function Docs() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">Connect Your Wallet</h4>
-                      <p className="text-gray-400">Click the "Connect Wallet" button and authorize the connection through your Phantom wallet.</p>
+                      <p className="text-gray-400">Click the Connect Wallet button and authorize the connection through your Phantom wallet.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -74,7 +74,7 @@ export default function Docs() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">Launch the Agent</h4>
-                      <p className="text-gray-400">Once connected, click "Launch Agent" to start interacting with the AI assistant.</p>
+                      <p className="text-gray-400">Once connected, click Launch Agent to start interacting with the AI assistant.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -163,7 +163,7 @@ export default function Docs() {
             <div className="bg-[#20242D] rounded-xl p-6">
               <h3 className="text-xl font-semibold text-white mb-4">Getting Your API Key</h3>
               <p className="text-gray-300 mb-6">
-                To integrate Coinbeast Agent with your applications, you'll need to obtain an API key. 
+                To integrate Coinbeast Agent with your applications, you will need to obtain an API key. 
                 Follow these steps to get started:
               </p>
               {/* <div className="bg-[#1A1F2A] rounded-xl p-6">
