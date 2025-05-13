@@ -5,6 +5,18 @@ import { createPhantom, Position } from "@phantom/wallet-sdk";
 import { PublicKey } from "@solana/web3.js";
 import { usePrivy } from '@privy-io/react-auth';
 
+// Add type declaration for window.solana
+declare global {
+  interface Window {
+    solana?: {
+      isPhantom?: boolean;
+      connect?: () => Promise<{ publicKey: PublicKey }>;
+      disconnect?: () => Promise<void>;
+      publicKey?: PublicKey;
+    };
+  }
+}
+
 interface PhantomWalletContextType {
   phantom: any;
   publicKey: PublicKey | null;
@@ -25,34 +37,23 @@ export function PhantomWalletProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const initWallet = async () => {
-      // Only initialize Phantom if user is authenticated
-      if (!authenticated) {
-        return;
-      }
+      if (!authenticated) return;
 
       try {
-        // Initialize Phantom wallet as a popup
-        const phantomInstance = await createPhantom({
-          position: Position.bottomRight,
-          namespace: "phantom-sak",
-        });
+        // Check for installed Phantom extension
+        const provider = window?.solana;
         
-        setPhantom(phantomInstance);
-        
-        // Check if already connected
-        try {
-          if (phantomInstance.solana) {
-            // Try to connect silently if the user has previously connected
-            const account = await phantomInstance.solana.connect();
-            console.log("account", account);
-            if (account) {
-              setPublicKey(phantomInstance.solana.publicKey);
-              setConnected(true);
-            }
+        if (provider?.isPhantom) {
+          // Use the installed extension directly
+          setPhantom(provider);
+          
+          // Check if already connected
+          if (provider.publicKey) {
+            setPublicKey(provider.publicKey);
+            setConnected(true);
           }
-        } catch (error) {
-          // Silent connection failed, user needs to connect manually
-          console.log("Not previously connected");
+        } else {
+          console.error("Phantom wallet not found! Please install Phantom.");
         }
       } catch (error) {
         console.error("Error initializing Phantom wallet:", error);
@@ -60,32 +61,42 @@ export function PhantomWalletProvider({ children }: { children: ReactNode }) {
     };
 
     initWallet();
-  }, [authenticated]); // Add authenticated as a dependency
+  }, [authenticated]);
 
   const connect = async () => {
-    if (!phantom?.solana) return;
+    const provider = window?.solana;
+    
+    if (!provider?.isPhantom || !provider.connect) {
+      console.error("Phantom wallet not found or connect method not available!");
+      return;
+    }
     
     try {
       setConnecting(true);
-      phantom.show(); // Show the wallet UI
       
-      const account = await phantom.solana.connect();
-      if (account) {
-        setPublicKey(phantom.solana.publicKey);
+      // Connect directly to the extension
+      const resp = await provider.connect();
+      console.log("Connected to Phantom:", resp);
+      
+      if (resp.publicKey) {
+        setPublicKey(resp.publicKey);
         setConnected(true);
       }
     } catch (error) {
       console.error("Error connecting to Phantom wallet:", error);
+      throw error;
     } finally {
       setConnecting(false);
     }
   };
 
   const disconnect = async () => {
-    if (!phantom?.solana) return;
+    const provider = window?.solana;
+    
+    if (!provider?.isPhantom || !provider.disconnect) return;
     
     try {
-      await phantom.solana.disconnect();
+      await provider.disconnect();
       setPublicKey(null);
       setConnected(false);
     } catch (error) {

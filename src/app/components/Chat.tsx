@@ -258,20 +258,46 @@ export const AIChat: React.FC<AIChatProps> = () => {
         <div className="flex-1 flex flex-col items-center justify-center space-y-8 p-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Connect to Phantom
+              {isLoading ? 'Initializing Phantom...' : 'Connect to Phantom'}
             </h1>
             <p className="text-lg text-gray-400 max-w-md">
-              Please connect your Phantom wallet to access your AI agent
+              {isLoading ? (
+                <>
+                  Please wait while we initialize your Phantom wallet connection.
+                  <div className="mt-4 flex items-center justify-center">
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-[#3ebd4d] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-2 h-2 bg-[#3ebd4d] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-2 h-2 bg-[#3ebd4d] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
+                  </div>
+                  <p className="mt-6 text-sm text-gray-500">
+                    If this takes longer than 30 seconds, please try:
+                    <br />
+                    1. Refreshing the page
+                    <br />
+                    2. Ensuring Phantom extension is running
+                    <br />
+                    3. Checking your internet connection
+                  </p>
+                </>
+              ) : (
+                'Please connect your Phantom wallet to access your AI agent'
+              )}
             </p>
           </div>
           
-          <button
-            onClick={() => phantom?.connect()}
-            className="flex items-center gap-3 bg-gradient-to-br from-[#2B3542]/90 to-[#333D4A]/90 hover:from-[#333D4A]/90 hover:to-[#2B3542]/90 text-white px-8 py-4 rounded-xl transition-all border border-[#fafafa]/20"
-          >
-           
-            <span className="font-medium text-lg">Connect Wallet</span>
-          </button>
+          {!isLoading && (
+            <button
+              onClick={() => {
+                setIsLoading(true);
+                phantom?.connect().catch(() => setIsLoading(false));
+              }}
+              className="flex items-center gap-3 bg-gradient-to-br from-[#2B3542]/90 to-[#333D4A]/90 hover:from-[#333D4A]/90 hover:to-[#2B3542]/90 text-white px-8 py-4 rounded-xl transition-all border border-[#fafafa]/20"
+            >
+              <span className="font-medium text-lg">Connect Wallet</span>
+            </button>
+          )}
         </div>
       ) : (
         <>

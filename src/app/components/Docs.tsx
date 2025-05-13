@@ -102,15 +102,17 @@ export default function Docs() {
               </div>
 
               <h3 className="text-2xl font-semibold text-white mb-4">Basic Commands</h3>
-              {/* <div className="bg-[#1A1F2A] rounded-xl p-6 mb-6">
+              <div className="bg-[#1A1F2A] rounded-xl p-6 mb-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example commands
-&quot;Show me the current market trends&quot;
-&quot;Analyze my portfolio performance&quot;
-&quot;Set up a trading strategy for BTC&quot;
-&quot;Monitor price movements for SOL&quot;`}</code>
+"What is my wallet balance?"
+"Show me trending tokens"
+"Analyze my portfolio performance"
+"audit this token address for scams"
+"What is the price of SOL?"
+"Monitor price movements for SOL"`}</code>
                 </pre>
-              </div> */}
+              </div>
             </div>
           </section>
 
@@ -132,7 +134,7 @@ export default function Docs() {
                 {
                   title: "Automated Trading",
                   description: "Set up automated trading strategies based on your risk tolerance and goals.",
-                  icon: "solar:robot-bold"
+                  icon: "mdi:robot"
                 },
                 {
                   title: "Risk Management",
@@ -166,7 +168,7 @@ export default function Docs() {
                 To integrate Coinbeast Agent with your applications, you will need to obtain an API key. 
                 Follow these steps to get started:
               </p>
-              {/* <div className="bg-[#1A1F2A] rounded-xl p-6">
+              <div className="bg-[#1A1F2A] rounded-xl p-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example API request
 const response = await fetch('https://api.coinbeast.ai/v1/analysis', {
@@ -182,7 +184,7 @@ const response = await fetch('https://api.coinbeast.ai/v1/analysis', {
   })
 });`}</code>
                 </pre>
-              </div> */}
+              </div>
             </div>
           </section>
         </div>
