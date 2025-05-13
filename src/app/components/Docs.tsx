@@ -101,8 +101,8 @@ export default function Docs() {
                 />
               </div>
 
-              {/* <h3 className="text-2xl font-semibold text-white mb-4">Basic Commands</h3>
-              <div className="bg-[#1A1F2A] rounded-xl p-6 mb-6">
+              <h3 className="text-2xl font-semibold text-white mb-4">Basic Commands</h3>
+              {/* <div className="bg-[#1A1F2A] rounded-xl p-6 mb-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example commands
 &quot;Show me the current market trends&quot;
@@ -110,9 +110,9 @@ export default function Docs() {
 &quot;Set up a trading strategy for BTC&quot;
 &quot;Monitor price movements for SOL&quot;`}</code>
                 </pre>
-              </div>
+              </div> */}
             </div>
-          </section> */}
+          </section>
 
           {/* Core Features Section */}
           <section id="core-features" className="scroll-mt-24">
