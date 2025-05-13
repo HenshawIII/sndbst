@@ -12,6 +12,7 @@ import { Toaster, toast } from "sonner";
 import AuthGuard from "../components/AuthGuard";
 import TokenBanner from "../components/TokenBanner";
 import TestCoinGecko from "../components/TestCoinGecko";
+import Image from "next/image";
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
@@ -39,12 +40,23 @@ export default function Dashboard() {
   return (
     <AuthGuard>
        
-      <div className="bg-[radial-gradient(circle,#242A37,#29313F,#2C3644,#3D4854)] min-h-screen flex flex-col">
+      <div className="bg-[black] min-h-screen flex flex-col">
        
         <Navbar />
         <div className="flex-1 flex flex-col">
           {/* <SolanaTransactionExample /> */}
           <AIChat/>
+          <footer className="py-8 px-4 border-t border-[rgba(255,255,255,0.1)]">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center gap-2 mb-4 md:mb-0">
+            <Image src="/cb1.jpg" alt="Agent Character" width={80} height={80} className="rounded-lg" />
+            <span className="text-white font-semibold"></span>
+          </div>
+          <div className="text-gray-400 text-sm">
+            Coinbeast Agent v1.0
+          </div>
+        </div>
+      </footer>
         </div>
         <Toaster
           position="bottom-right"

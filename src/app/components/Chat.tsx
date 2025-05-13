@@ -31,6 +31,17 @@ type AIChatProps = {
 
 };
 
+// Add this component at the top level, before the AIChat component
+const TypingAnimation = () => {
+  return (
+    <div className="flex items-center space-x-1">
+      <div className="w-2 h-2 bg-[#3ebd4d] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+      <div className="w-2 h-2 bg-[#3ebd4d] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+      <div className="w-2 h-2 bg-[#3ebd4d] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+    </div>
+  );
+};
+
 export const AIChat: React.FC<AIChatProps> = () => {
   const [messages, setMessages] = useState<CoreMessage[]>(() => {
     // Initialize messages from localStorage if available
@@ -177,7 +188,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       const result = await generateText({
         model: myProvider.languageModel("chat-model"),
         messages: updatedMessages,
-        system: `You are a helpful agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
+        system: `You are a helpful and friednly agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
 
         For CoinGecko API, use these endpoints:
         1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
@@ -303,7 +314,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
           <div className="flex-1 flex flex-col overflow-hidden rounded-2xl p-6 backdrop-blur-sm">
             <div className="flex-1 overflow-y-auto px-2 py-4 space-y-6">
               {messages.length === 0 ? (
-                <div className="flex flex-col items-start justify-start h-full px-4 pt-24">
+                <div className="flex flex-col items-start justify-start h-full px-4 pt-24" style={{ backgroundColor: 'black',backgroundImage: 'url(/cb2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                   <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                     Welcome, {publicKey?.toString().slice(0, 4)}...{publicKey?.toString().slice(-4)}
                   </h1>
@@ -316,7 +327,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                   <div key={i} className="flex items-start justify-start">
                     <div className="flex-shrink-0 mr-3">
                       <div
-                        className={`${m.role === "user" ? "bg-[#2658DD] rounded-lg" : "bg-white rounded-lg"} flex items-center justify-center w-8 h-8`}
+                        className={`${m.role === "user" ? "bg-[#2658DD] rounded-lg" : "bg-[#2e2f2e] rounded-lg"} flex items-center justify-center w-8 h-8`}
                       >
                         {m.role === "user" ? (
                           <Image
@@ -327,7 +338,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                             className="object-contain"
                           />
                         ) : (
-                            <Image src="/sendai.jpg" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
+                            <Image src="/coinbasee.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
                         )}
                       </div>
                     </div>
@@ -416,6 +427,24 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     </div>
                   </div>
                 ))
+              )}
+              {isLoading && (
+                <div className="flex items-start justify-start">
+                  <div className="flex-shrink-0 mr-3">
+                    <div className="bg-white rounded-lg flex items-center justify-center w-8 h-8">
+                      <Image src="/coinbasee.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <div className="flex items-center mb-1">
+                      <span className="text-xs text-gray-400 mr-2">Phantom Agent</span>
+                      <span className="text-xs text-gray-500">{getCurrentTime()}</span>
+                    </div>
+                    <div className="chat-message-ai">
+                      <TypingAnimation />
+                    </div>
+                  </div>
+                </div>
               )}
               <div ref={bottomRef} />
             </div>
@@ -507,7 +536,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                 </div>
               </div>
               <div className="text-center text-white text-md opacity-50 mt-4">
-                Powered by Solana Agent Kit 2.0
+                Coinbeast Agent v1.0
               </div>
             </div>
           </div>

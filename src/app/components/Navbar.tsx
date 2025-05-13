@@ -112,6 +112,17 @@ const Navbar: React.FC<NavbarProps> = () => {
               >
                 Chat with AI
               </Link>
+              <Link 
+                href="/docs" 
+                onClick={() => setIsSidebarOpen(false)}
+                className={`text-sm font-medium transition-colors p-2 rounded-lg ${
+                  isActive('/docs') 
+                    ? 'text-white bg-[rgba(255,255,255,0.1)]' 
+                    : 'text-gray-400 hover:text-white hover:bg-[rgba(255,255,255,0.05)]'
+                }`}
+              >
+                Docs
+              </Link>
 
               {/* Wallet and Logout Section */}
               {authenticated && (
@@ -188,6 +199,16 @@ const Navbar: React.FC<NavbarProps> = () => {
               }`}
             >
               Chat with AI
+            </Link>
+            <Link 
+              href="/docs" 
+              className={`text-sm font-medium transition-colors ${
+                isActive('/docs') 
+                  ? 'text-white' 
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Docs
             </Link>
           </nav>
         </div>

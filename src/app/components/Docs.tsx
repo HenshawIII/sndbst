@@ -158,7 +158,7 @@ export default function Docs() {
           </section>
 
           {/* API Integration Section */}
-          {/* <section id="api-integration" className="scroll-mt-24">
+          <section id="api-integration" className="scroll-mt-24">
             <h2 className="text-3xl font-bold text-white mb-6">API Integration</h2>
             <div className="bg-[#20242D] rounded-xl p-6">
               <h3 className="text-xl font-semibold text-white mb-4">Getting Your API Key</h3>
@@ -166,25 +166,25 @@ export default function Docs() {
                 To integrate Coinbeast Agent with your applications, you'll need to obtain an API key. 
                 Follow these steps to get started:
               </p>
-              <div className="bg-[#1A1F2A] rounded-xl p-6">
+              {/* <div className="bg-[#1A1F2A] rounded-xl p-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example API request
-const response = await fetch(&apos;https://api.coinbeast.ai/v1/analysis&apos;, {
-  method: &apos;POST&apos;,
+const response = await fetch('https://api.coinbeast.ai/v1/analysis', {
+  method: 'POST',
   headers: {
-    &apos;Authorization&apos;: &apos;Bearer YOUR_API_KEY&apos;,
-    &apos;Content-Type&apos;: &apos;application/json&apos;
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    symbol: &apos;BTC/USD&apos;,
-    timeframe: &apos;1h&apos;,
-    indicators: [&apos;RSI&apos;, &apos;MACD&apos;]
+    symbol: 'BTC/USD',
+    timeframe: '1h',
+    indicators: ['RSI', 'MACD']
   })
 });`}</code>
                 </pre>
-              </div>
+              </div> */}
             </div>
-          </section> */}
+          </section>
         </div>
       </div>
     </div>

@@ -74,7 +74,7 @@ export default function About() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0] rounded-xl"></div>
               <div className="absolute inset-[2px] bg-[#20242D] rounded-[10px]"></div>
-              <div className="relative flex items-center gap-2">
+              <div className="relative flex items-center gap-2 hover:scale-110 transition-all duration-200">
                 <Icon icon="solar:rocket-bold" width="24" height="24" className="text-white" />
                 <Link href="#hero" className="text-white">Launch Agent</Link>
               </div>
