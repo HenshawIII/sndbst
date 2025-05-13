@@ -140,13 +140,13 @@ const Navbar: React.FC<NavbarProps> = () => {
           <div className="p-4 border-t border-[rgba(255,255,255,0.1)]">
             <Link href="/" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
               <Image
-                src="/sendai.jpg"
+                src="/cb1.jpg"
                 width={32}
                 height={32}
                 alt="Sendai Logo"
                 className="rounded-lg"
               />
-              <span className="text-white font-semibold">Solana Agent Kit</span>
+              <span className="text-white font-semibold">Coinbeast Agent v1.0</span>
             </Link>
           </div>
         </div>

@@ -23,7 +23,7 @@ function RootLayout({ children }: RootLayoutProps) {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className={`h-full ${inter.className}`}>
-      <div className=" sticky top-0 left-0 right-0 z-[9999]">
+      <div className=" !sticky !top-0 left-0 right-0 z-[9999]">
             <TokenBanner />
           </div>
         <PrivyProv>

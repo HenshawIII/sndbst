@@ -10,8 +10,8 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "What is Phantom AI Agent?",
-    answer: "Phantom AI Agent is an intelligent assistant powered by Solana Agent Kit that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
+    question: "What is Coinbeast AI Agent?",
+    answer: "Coinbeast AI Agent is an intelligent assistant powered by Solana Agent Kit that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
   },
   {
     question: "How do I connect my wallet?",
@@ -44,7 +44,7 @@ export default function FAQ() {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-12">
-      <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+      <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">
         Frequently Asked Questions
       </h2>
       <div className="space-y-4">
@@ -53,14 +53,14 @@ export default function FAQ() {
             key={index}
             className={`group relative bg-[#20242D] rounded-xl border border-[rgba(255,255,255,0.1)] overflow-hidden transition-all duration-300 ${
               openIndex === index 
-                ? 'border-[#3351FF]/50 shadow-[0_0_30px_rgba(51,81,255,0.15)]' 
-                : 'hover:border-[#3351FF]/30 hover:shadow-[0_0_20px_rgba(51,81,255,0.1)]'
+                ? 'border-[#3ebd4d]/50 shadow-[0_0_30px_rgba(62,189,77,0.15)]' 
+                : 'hover:border-[#3ebd4d]/30 hover:shadow-[0_0_20px_rgba(62,189,77,0.1)]'
             }`}
           >
-            <div className={`absolute inset-0 bg-gradient-to-r from-[#3351FF]/0 via-[#3351FF]/0 to-[#3351FF]/0 rounded-xl transition-all duration-300 ${
+            <div className={`absolute inset-0 bg-gradient-to-r from-[#3ebd4d]/0 via-[#3ebd4d]/0 to-[#3ebd4d]/0 rounded-xl transition-all duration-300 ${
               openIndex === index 
-                ? 'from-[#3351FF]/5 via-[#3351FF]/10 to-[#3351FF]/5' 
-                : 'group-hover:from-[#3351FF]/3 group-hover:via-[#3351FF]/5 group-hover:to-[#3351FF]/3'
+                ? 'from-[#3ebd4d]/5 via-[#3ebd4d]/10 to-[#3ebd4d]/5' 
+                : 'group-hover:from-[#3ebd4d]/3 group-hover:via-[#3ebd4d]/5 group-hover:to-[#3ebd4d]/3'
             }`}></div>
             
             <button
@@ -68,14 +68,14 @@ export default function FAQ() {
               className="w-full px-6 py-4 text-left flex justify-between items-center transition-colors duration-300 relative"
             >
               <span className={`font-medium transition-colors duration-300 ${
-                openIndex === index ? 'text-[#3351FF]' : 'text-white group-hover:text-[#3351FF]/80'
+                openIndex === index ? 'text-[#3ebd4d]' : 'text-white group-hover:text-[#3ebd4d]/80'
               }`}>
                 {faq.question}
               </span>
               <Icon
                 icon={openIndex === index ? "solar:alt-arrow-up-bold" : "solar:alt-arrow-down-bold"}
                 className={`transition-all duration-300 ${
-                  openIndex === index ? 'text-[#3351FF] rotate-180' : 'text-white group-hover:text-[#3351FF]/80'
+                  openIndex === index ? 'text-[#3ebd4d] rotate-180' : 'text-white group-hover:text-[#3ebd4d]/80'
                 }`}
                 width="24"
                 height="24"

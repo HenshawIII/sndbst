@@ -29,7 +29,7 @@ export default function StartTrading() {
         <div className="relative">
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="space-y-4 max-w-2xl">
-              <h2 className="text-3xl font-bold text-white">Start Trading $SEND</h2>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">Start Trading $SEND</h2>
               <p className="text-gray-400 text-lg">
                 Copy the token address below to start trading $SEND on your favorite DEX. 
                 Make sure to verify the contract address before trading.
@@ -60,7 +60,7 @@ export default function StartTrading() {
                 href={`https://solscan.io/token/${TOKEN_ADDRESS}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-[#3351FF] hover:bg-[#2B44E5] text-white rounded-xl transition-colors w-full"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0]  text-white rounded-xl transition-colors w-full"
               >
                 <Icon icon="solar:chart-bold" width="24" height="24" />
                 View on Solscan
