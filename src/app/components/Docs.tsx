@@ -105,10 +105,10 @@ export default function Docs() {
               <div className="bg-[#1A1F2A] rounded-xl p-6 mb-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example commands
-"Show me the current market trends"
-"Analyze my portfolio performance"
-"Set up a trading strategy for BTC"
-"Monitor price movements for SOL"`}</code>
+&quot;Show me the current market trends&quot;
+&quot;Analyze my portfolio performance&quot;
+&quot;Set up a trading strategy for BTC&quot;
+&quot;Monitor price movements for SOL&quot;`}</code>
                 </pre>
               </div>
             </div>
@@ -169,16 +169,16 @@ export default function Docs() {
               <div className="bg-[#1A1F2A] rounded-xl p-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example API request
-const response = await fetch('https://api.coinbeast.ai/v1/analysis', {
-  method: 'POST',
+const response = await fetch(&apos;https://api.coinbeast.ai/v1/analysis&apos;, {
+  method: &apos;POST&apos;,
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
-    'Content-Type': 'application/json'
+    &apos;Authorization&apos;: &apos;Bearer YOUR_API_KEY&apos;,
+    &apos;Content-Type&apos;: &apos;application/json&apos;
   },
   body: JSON.stringify({
-    symbol: 'BTC/USD',
-    timeframe: '1h',
-    indicators: ['RSI', 'MACD']
+    symbol: &apos;BTC/USD&apos;,
+    timeframe: &apos;1h&apos;,
+    indicators: [&apos;RSI&apos;, &apos;MACD&apos;]
   })
 });`}</code>
                 </pre>
