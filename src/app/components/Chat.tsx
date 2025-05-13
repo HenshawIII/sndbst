@@ -82,6 +82,8 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const solanaTools = useMemo(() => {
     if (phantom) {
       const wallet = publicKey;
+      // Use phantom.solana if available, otherwise phantom itself
+      const solanaProvider = (phantom.solana ?? phantom);
       const agent = new SolanaAgentKit(
         {
           publicKey: wallet!,
@@ -89,52 +91,63 @@ export const AIChat: React.FC<AIChatProps> = () => {
             tx: T
           ): Promise<T> => {
             console.log("sign transaction");
-            if (!phantom) throw new Error("Phantom not initialized.");
-
-            const signedTransaction = await phantom.solana.signTransaction(
-              tx
-            );
-            return signedTransaction as T;
+            if (!solanaProvider || !solanaProvider.signTransaction) throw new Error("Phantom provider not initialized or missing signTransaction.");
+            try {
+              const signedTransaction = await solanaProvider.signTransaction(tx);
+              return signedTransaction as T;
+            } catch (error) {
+              console.error("Error in signTransaction:", error);
+              throw error;
+            }
           },
           signMessage: async (msg) => {
             console.log("sign message");
-            if (!phantom) throw new Error("Phantom not initialized.");
-
-            const signedMessage = await phantom.solana.signMessage(
-              msg
-            );
-
-            return signedMessage.signature;
+            if (!solanaProvider || !solanaProvider.signMessage) throw new Error("Phantom provider not initialized or missing signMessage.");
+            try {
+              const signedMessage = await solanaProvider.signMessage(msg);
+              return signedMessage.signature;
+            } catch (error) {
+              console.error("Error in signMessage:", error);
+              throw error;
+            }
           },
           sendTransaction: async (tx) => {
             console.log("send transaction");
-            if (!phantom) throw new Error("Phantom not initialized.");
-            const transactionHash = await phantom.solana.sendTransaction(tx);
-            return transactionHash;
+            if (!solanaProvider || !solanaProvider.sendTransaction) throw new Error("Phantom provider not initialized or missing sendTransaction.");
+            try {
+              const transactionHash = await solanaProvider.sendTransaction(tx);
+              return transactionHash;
+            } catch (error) {
+              console.error("Error in sendTransaction:", error);
+              throw error;
+            }
           },
-          signAllTransactions: async <
-            T extends Transaction | VersionedTransaction,
-          >(
+          signAllTransactions: async <T extends Transaction | VersionedTransaction>(
             txs: T[]
           ): Promise<T[]> => {
             console.log("sign all transaction");
-            if (!phantom) throw new Error("Phantom not initialized.");
-
-            const signedTransaction = await phantom.solana.signAllTransactions(
-              txs
-            );
-            return signedTransaction as T[];
+            if (!solanaProvider || !solanaProvider.signAllTransactions) throw new Error("Phantom provider not initialized or missing signAllTransactions.");
+            try {
+              const signedTransaction = await solanaProvider.signAllTransactions(txs);
+              return signedTransaction as T[];
+            } catch (error) {
+              console.error("Error in signAllTransactions:", error);
+              throw error;
+            }
           },
-          signAndSendTransaction: async <
-            T extends Transaction | VersionedTransaction,
-          >(
+          signAndSendTransaction: async <T extends Transaction | VersionedTransaction>(
             tx: T,
             options?: SendOptions
           ): Promise<{ signature: string }> => {
             console.log("sign and send transaction");
-            if (!phantom) throw new Error("Phantom not initialized.");
-            const transactionHash = await phantom.solana.signAndSendTransaction(tx);
-            return { signature: transactionHash };
+            if (!solanaProvider || !solanaProvider.signAndSendTransaction) throw new Error("Phantom provider not initialized or missing signAndSendTransaction.");
+            try {
+              const transactionHash = await solanaProvider.signAndSendTransaction(tx);
+              return { signature: transactionHash };
+            } catch (error) {
+              console.error("Error in signAndSendTransaction:", error);
+              throw error;
+            }
           },
         },
         process.env.NEXT_PUBLIC_RPC_URL as string,
