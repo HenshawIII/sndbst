@@ -6,11 +6,11 @@ import Navbar from '../components/Navbar';
 import Docs from '../components/Docs';
 export default function DocsPage() {
   return (
-    <>
+    <div className="bg-[#000]">
     <Navbar />
       <Docs />
-      <footer className="py-8 px-4 border-t border-[rgba(255,255,255,0.1)]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+      <footer className="py-8 px-4 border-t border-[rgba(255,255,255,0.1)] bg-[#000]  ">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-around items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <Image src="/cb1.jpg" alt="Agent Character" width={80} height={80} className="rounded-lg" />
             <span className="text-white font-semibold"></span>
@@ -32,7 +32,7 @@ export default function DocsPage() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 

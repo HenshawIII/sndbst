@@ -166,10 +166,10 @@ const Navbar: React.FC<NavbarProps> = () => {
       {/* Desktop Navbar */}
       <div className="hidden md:flex relative top-0 left-0 w-full z-[1000] bg-transparent backdrop-blur-sm items-center justify-between h-24 px-12">
         <div className="flex items-center gap-8">
-          <a href="https://x.com/CoinbeastAI" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
-                src="/xpn.svg"
+                src="/sendai.jpg  "
                 width={40}
                 height={40}
                 alt="Sendai Logo"
@@ -177,7 +177,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               />
             </div>
             {/* <span className="text-white font-bold text-lg"></span> */}
-          </a>
+          </Link>
 
           <nav className="flex items-center gap-6">
             <Link 
@@ -210,6 +210,14 @@ const Navbar: React.FC<NavbarProps> = () => {
             >
               Docs
             </Link>
+            <a 
+              href="https://x.com/CoinbeastAI" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sm font-medium transition-colors hover:scale-110`}
+            >
+             <Image src="/xpn.svg" width={28} height={28} alt="XPN Logo" />
+            </a>
           </nav>
         </div>
         
