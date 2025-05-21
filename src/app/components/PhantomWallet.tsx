@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { PublicKey, Transaction, VersionedTransaction } from "@solana/web3.js";
 import { usePrivy } from '@privy-io/react-auth';
+import { createPhantom } from "@phantom/wallet-sdk";
 
 // Add type declaration for window.solana
 declare global {
@@ -15,6 +16,7 @@ declare global {
       signTransaction?: (transaction: Transaction | VersionedTransaction) => Promise<Transaction | VersionedTransaction>;
       signAndSendTransaction?: (transaction: Transaction | VersionedTransaction) => Promise<{ signature: string }>;
     };
+    phantom?: any;
   }
 }
 
@@ -42,20 +44,36 @@ export function PhantomWalletProvider({ children }: { children: ReactNode }) {
       if (!authenticated) return;
 
       try {
-        // Check for installed Phantom extension
-        const provider = window?.solana;
-        
-        if (provider?.isPhantom) {
-          // Use the embedded wallet directly
-          setPhantom(provider);
-        
-        // Check if already connected
-          if (provider.publicKey) {
+        let provider;
+        let phantomInstance = null;
+        // Only call createPhantom if neither extension nor embedded wallet is present
+        if (!window.phantom && !window.solana) {
+          phantomInstance = await createPhantom();
+          provider = phantomInstance.solana;
+        } else if (window.phantom && window.phantom.solana) {
+          provider = window.phantom.solana;
+        } else if (window.solana) {
+          provider = window.solana;
+        }
+        if (provider) {
+          setPhantom(phantomInstance || provider); // Save the instance if present, else window.solana
+          // If not connected, try to connect
+          if (!provider.publicKey && provider.connect) {
+            try {
+              const resp = await provider.connect();
+              if (resp && resp.publicKey) {
+                setPublicKey(resp.publicKey);
+                setConnected(true);
+              }
+            } catch (err) {
+              console.error("Error auto-connecting to Phantom wallet:", err);
+            }
+          } else if (provider.publicKey) {
             setPublicKey(provider.publicKey);
-              setConnected(true);
+            setConnected(true);
           }
         } else {
-          console.error("Phantom wallet not found! Please install Phantom.");
+          console.error("Phantom wallet not found! Please install Phantom or use the in-app wallet.");
         }
       } catch (error) {
         console.error("Error initializing Phantom wallet:", error);
@@ -66,20 +84,15 @@ export function PhantomWalletProvider({ children }: { children: ReactNode }) {
   }, [authenticated]);
 
   const connect = async () => {
-    const provider = window?.solana;
-    
+    const provider = phantom?.solana || phantom;
     if (!provider?.isPhantom || !provider.connect) {
       console.error("Phantom wallet not found or connect method not available!");
       return;
     }
-    
     try {
       setConnecting(true);
-      
-      // Connect directly to the extension
       const resp = await provider.connect();
       console.log("Connected to Phantom:", resp);
-      
       if (resp.publicKey) {
         setPublicKey(resp.publicKey);
         setConnected(true);
@@ -93,10 +106,8 @@ export function PhantomWalletProvider({ children }: { children: ReactNode }) {
   };
 
   const disconnect = async () => {
-    const provider = window?.solana;
-    
+    const provider = phantom?.solana || phantom;
     if (!provider?.isPhantom || !provider.disconnect) return;
-    
     try {
       await provider.disconnect();
       setPublicKey(null);
@@ -107,14 +118,12 @@ export function PhantomWalletProvider({ children }: { children: ReactNode }) {
   };
 
   const signAndSendTransaction = async (transaction: Transaction | VersionedTransaction) => {
-    const provider = window?.solana;
-    
+    const provider = phantom?.solana || phantom;
     if (!provider?.isPhantom || !provider.signAndSendTransaction) {
       const err = new Error("Phantom wallet not found or signAndSendTransaction method not available!");
       console.error(err);
       throw err;
     }
-    
     try {
       const result = await provider.signAndSendTransaction(transaction);
       return result;

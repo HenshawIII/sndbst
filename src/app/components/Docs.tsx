@@ -65,7 +65,7 @@ export default function Docs() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">Connect Your Wallet</h4>
-                      <p className="text-gray-400">Click the Connect Wallet button and authorize the connection through your Phantom wallet.</p>
+                      <p className="text-gray-400">Click the Connect Wallet button and log in with any of the available options , a phantom wallet extension will be provided if not already installed</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -74,7 +74,7 @@ export default function Docs() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">Launch the Agent</h4>
-                      <p className="text-gray-400">Once connected, click Launch Agent to start interacting with the AI assistant.</p>
+                      <p className="text-gray-400">Once logged in, the agent will check for phantom wallet extension and connect to it</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -82,8 +82,17 @@ export default function Docs() {
                       <span className="text-[#3ebd4d] font-semibold">3</span>
                     </div>
                     <div>
-                      <h4 className="text-white font-medium mb-2">Start Trading</h4>
-                      <p className="text-gray-400">Begin by asking the agent about market conditions or specific trading strategies.</p>
+                      <h4 className="text-white font-medium mb-2">Start Interacting</h4>
+                      <p className="text-gray-400">Begin by asking the agent about market conditions or wallet balances.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#3ebd4d]/10 flex items-center justify-center">
+                        <span className="text-[#3ebd4d] font-semibold">4</span>
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium mb-2">Get Insights</h4>
+                      <p className="text-gray-400">Ask the agent to get insights about a specific token or fetch trending tokens.</p>
                     </div>
                   </div>
                 </div>

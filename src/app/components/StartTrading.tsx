@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Icon } from "@iconify/react";
 import { toast } from "sonner";
 
-const TOKEN_ADDRESS = "SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa";
+const TOKEN_ADDRESS = "11111111111111111111111111111111111111...";
 
 export default function StartTrading() {
   const [isCopied, setIsCopied] = useState(false);
@@ -29,9 +29,9 @@ export default function StartTrading() {
         <div className="relative">
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="space-y-4 max-w-2xl">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">Start Trading $SEND</h2>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">Start Trading COINBEAST</h2>
               <p className="text-gray-400 text-lg">
-                Copy the token address below to start trading $SEND on your favorite DEX. 
+                Copy the token address below to start trading $BEAST on your favorite DEX. 
                 Make sure to verify the contract address before trading.
               </p>
             </div>

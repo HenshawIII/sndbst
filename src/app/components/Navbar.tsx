@@ -149,16 +149,16 @@ const Navbar: React.FC<NavbarProps> = () => {
 
           {/* Logo at bottom */}
           <div className="p-4 border-t border-[rgba(255,255,255,0.1)]">
-            <Link href="/" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
+            <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
               <Image
-                src="/cb1.jpg"
+                src="/xpn.svg"
                 width={32}
                 height={32}
                 alt="Sendai Logo"
                 className="rounded-lg"
               />
               <span className="text-white font-semibold">Coinbeast Agent v1.0</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -166,10 +166,10 @@ const Navbar: React.FC<NavbarProps> = () => {
       {/* Desktop Navbar */}
       <div className="hidden md:flex relative top-0 left-0 w-full z-[1000] bg-transparent backdrop-blur-sm items-center justify-between h-24 px-12">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2">
+          <a href="https://x.com/CoinbeastAI" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
-                src="/sendai.jpg"
+                src="/xpn.svg"
                 width={40}
                 height={40}
                 alt="Sendai Logo"
@@ -177,7 +177,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               />
             </div>
             {/* <span className="text-white font-bold text-lg"></span> */}
-          </Link>
+          </a>
 
           <nav className="flex items-center gap-6">
             <Link 

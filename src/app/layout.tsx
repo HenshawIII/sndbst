@@ -18,17 +18,17 @@ interface RootLayoutProps {
 }
 
 function RootLayout({ children }: RootLayoutProps) {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      createPhantom();
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (typeof window !== "undefined") {
+  //       createPhantom();
+  //     }
+  //   }, []);
 
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <head>
-        <title>Phantom AI</title>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <title>Coinbeast</title>
+        <link rel="icon" href="/coinbett.png" type="image/png" />
       </head>
       <body className={`h-full ${inter.className}`}>
       <div className=" !sticky !top-0 left-0 right-0 z-[9999]">
