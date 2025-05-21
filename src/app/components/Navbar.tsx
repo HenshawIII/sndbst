@@ -169,7 +169,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href="/" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
-                src="/sendai.jpg  "
+                src="/sendai.jpg"
                 width={40}
                 height={40}
                 alt="Sendai Logo"
