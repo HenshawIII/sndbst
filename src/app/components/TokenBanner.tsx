@@ -26,7 +26,7 @@ export default function TokenBanner() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   return (
-    <div className="w-full bg-[#20242D] p-4">
+    <div className="w-[105vw] md:w-full bg-[#20242D] p-4">
       <Script 
         src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"
         strategy="afterInteractive"

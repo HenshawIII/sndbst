@@ -316,12 +316,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
         <>
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl font-bold text-white">Chat with AI</h1>
-            <button
-              onClick={() => setShowClearModal(true)}
-              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
-            >
-              Clear Chat
-            </button>
+            {messages.length > 0 && (
+              <button
+                onClick={() => setShowClearModal(true)}
+                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+              >
+                Clear Chat
+              </button>
+            )}
           </div>
 
           {/* Clear Chat Confirmation Modal */}

@@ -123,6 +123,16 @@ const Navbar: React.FC<NavbarProps> = () => {
               >
                 Docs
               </Link>
+              <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="pl-2 flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
+              <Image
+                src="/xpn.svg"
+                width={32}
+                height={32}
+                alt="Sendai Logo"
+                className="rounded-lg"
+              />
+              
+            </a>
 
               {/* Wallet and Logout Section */}
               {authenticated && (
@@ -148,17 +158,10 @@ const Navbar: React.FC<NavbarProps> = () => {
           </div>
 
           {/* Logo at bottom */}
-          <div className="p-4 border-t border-[rgba(255,255,255,0.1)]">
-            <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
-              <Image
-                src="/xpn.svg"
-                width={32}
-                height={32}
-                alt="Sendai Logo"
-                className="rounded-lg"
-              />
-              <span className="text-white font-semibold">Coinbeast Agent v1.0</span>
-            </a>
+          <div className="p-4 border-t border-[rgba(255,255,255,0.1)] flex items-center justify-center  ">
+            
+              <span className="text-white font-semibold text-center">Coinbeast Agent v1.0</span>
+            
           </div>
         </div>
       </div>
@@ -169,9 +172,9 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href="/" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
-                src="/sendai.jpg"
-                width={40}
-                height={40}
+                src="/coinbasee.png"
+                width={100}
+                height={100}
                 alt="Sendai Logo"
                 className="rounded-xl"
               />

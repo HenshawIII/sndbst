@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #1e2028;
+  --background: #000;
   --message-bg-user: #333D4A;
   --message-bg-ai: #3D4856;
   --text-primary: #ffffff;
