@@ -61,6 +61,7 @@
     "react-dom": "18.3.0",
     "react-international-phone": "^4.3.0",
     "react-markdown": "^10.1.0",
+    "react-tooltip": "^5.28.1",
     "solana-agent-kit": "2.0.2",
     "sonner": "^1.7.4",
     "stream-browserify": "^3.0.0",

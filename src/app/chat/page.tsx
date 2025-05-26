@@ -42,11 +42,11 @@ export default function Dashboard() {
        
       <div className="bg-[black] min-h-screen flex flex-col">
        
-        <Navbar />
+       {/* <div className="md:hidden"> <Navbar /></div> */}
         <div className="flex-1 flex flex-col">
           {/* <SolanaTransactionExample /> */}
           <AIChat/>
-          <footer className="py-8 px-4 border-t border-[rgba(255,255,255,0.1)]">
+          {/* <footer className="py-8 px-4 border-t border-[rgba(255,255,255,0.1)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 md:gap-4 mb-4 md:mb-0">
             <Image src="/cb1.jpg" alt="Agent Character" width={80} height={80} className="rounded-lg" />
@@ -68,7 +68,7 @@ export default function Dashboard() {
             
           </div>
         </div>
-      </footer>
+      </footer> */}
         </div>
         <Toaster
           position="bottom-right"
