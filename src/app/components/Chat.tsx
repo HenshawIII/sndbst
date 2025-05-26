@@ -59,7 +59,8 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const [showClearModal, setShowClearModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { phantom, connected, publicKey } = usePhantomWallet();
-  const bottomRef = useRef<HTMLDivElement | null>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedModel, setSelectedModel] = useState("Coinbeast v1 (beta)");
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -71,6 +72,11 @@ export const AIChat: React.FC<AIChatProps> = () => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('chat-messages', JSON.stringify(messages));
     }
+  }, [messages]);
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   // Clear chat function
@@ -504,7 +510,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
             </div>
           ) : (
             <>
-              <div className="flex-1 overflow-y-auto w-full xl:w-[80vw] mx-auto bg-[#000] pb-[120px]" style={{ height: 'calc(100vh - 72px - 64px)' }}>
+              <div className="flex-1 overflow-y-auto w-full xl:w-[80vw] mx-auto bg-[#000] pb-[120px]" 
+                ref={chatContainerRef}
+                style={{ height: 'calc(100vh - 72px - 64px)' }}>
                 {messages.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center px-4" style={{ backgroundImage: 'url(/cb2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
@@ -546,9 +554,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="w-full mx-auto relative  py-8 px-4">
+                  <div className="w-full mx-auto relative py-8 px-4">
                     {messages.map((m, i) => (
-                      <div key={i} className={`flex items-start  w-fit space-x-4 mb-8 ${m.role === "user" ? "flex-row-reverse right-0 justify-self-end" : "left-0"}`}>
+                      <div key={i} className={`flex items-start w-fit space-x-4 mb-8 ${m.role === "user" ? "flex-row-reverse right-0 justify-self-end" : "left-0"}`}>
                         <div className="flex-shrink-0">
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${m.role === "user" ? "bg-[#2658DD]" : "bg-[#2e2f2e]"}`}>
                             {m.role === "user" ? (
@@ -567,7 +575,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                               {getCurrentTime()}
                             </span>
                           </div>
-                          <div className={`prose prose-sm max-w-none text-gray-200 ${m.role === "user" ? "text-right" : ""} ${m.role === "assistant" ? "bg-[#232b36] p-4 rounded-lg" : "bg-[#232b36] p-4 rounded-lg" }`}>
+                          <div className={`text-sm max-w-none text-gray-200 ${m.role === "user" ? "text-right" : ""} ${m.role === "assistant" ? "bg-[#3f4d62] p-[6px] rounded-md" : "bg-[#3f4d62] p-[6px] rounded-md" }`}>
                             {typeof m.content === "string" ? (
                               <div dangerouslySetInnerHTML={{ __html: marked(m.content) }} />
                             ) : Array.isArray(m.content) ? (
@@ -629,6 +637,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         </div>
                       </div>
                     )}
+                    <div ref={bottomRef} />
                   </div>
                 )}
               </div>
@@ -636,7 +645,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
               {/* Input Area */}
               <div id="input-area" className="border-t border-gray-700 fixed bottom-0 left-0 right-0 bg-[#000] p-6 flex items-center justify-center z-10">
                 <div className="w-full lg:max-w-[40vw] px-4">
-                  <div className="relative flex flex-col bg-[#2B3542] lg:ml-[100px] lg:min-w-[40vw] rounded-xl border border-gray-600 p-4">
+                  <div className="relative flex flex-col bg-[#3f4d62] lg:ml-[100px] lg:min-w-[40vw] rounded-xl border border-gray-600 p-4">
                     {/* Text Input - Always on top */}
                     <textarea
                       className="w-full min-h-[24px] bg-transparent border-none text-white placeholder-gray-400 focus:outline-none focus:ring-0 resize-none px-4 mb-4"
