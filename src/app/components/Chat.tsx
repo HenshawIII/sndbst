@@ -61,7 +61,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const { phantom, connected, publicKey } = usePhantomWallet();
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("GPT-4o");
+  const [selectedModel, setSelectedModel] = useState("Coinbeast v1 (beta)");
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [showTools, setShowTools] = useState(false);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
@@ -299,7 +299,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       {/* Sidebar */}
       <div 
         ref={sidebarRef}
-        className={`fixed top-[72px] bottom-0 left-0 w-64 bg-[#000] transform ${
+        className={`fixed top-[72px] bottom-0 left-0 w-64 bg-[#1d2127] transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 transition-transform duration-200 ease-in-out z-30`}
       >
@@ -310,15 +310,15 @@ export const AIChat: React.FC<AIChatProps> = () => {
           <nav className="flex-1 p-4">
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
+                <Link href="/" className="group flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
                   <Icon icon="solar:home-2-bold" className="mr-3" width="20" height="20" />
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
-                  <Icon icon="solar:chat-round-dots-bold" className="mr-3" width="20" height="20" />
-                  Docs
+                <Link href="/addcoin" className="group flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
+                  <Icon icon="solar:add-circle-bold" className="mr-3" width="20" height="20" />
+                  create new coin
                 </Link>
               </li>
               <li>
@@ -334,12 +334,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                 </a>
               </li>
               
-              <li>
-                <a href="https://x.com/coinbeastai" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
-                  <Image src="/xpn.svg" alt="XPN" width={20} height={20} className="mr-3" />
-                  Twitter
-                </a>
-              </li>
+             
             </ul>
 
             {/* <div className="mt-8">
@@ -380,24 +375,31 @@ export const AIChat: React.FC<AIChatProps> = () => {
               </div>
             </div> */}
 
-            <div className="mt-auto border-t border-gray-700 pt-4">
+            <div className="mt-auto  border-gray-700 pt-4">
               
               <button 
                 onClick={() => setShowLogoutModal(true)}
-                className="w-full flex items-center px-2 py-3 text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                className="w-full flex items-center px-2 py-3 absolute bottom-24 left-0 right-0  text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
               >
                 <Icon icon="solar:logout-3-bold" className="mr-3" width="20" height="20" />
                 <span className="text-sm font-medium">Log Out</span>
               </button>
-              <div className="flex justify-center mt-24">
+              <div className="w-full flex justify-center mt-24 space-x-4 bottom-52 absolute -left-[72px]">
                 <Image 
                   src="/coinbasee.png" 
                   alt="Coinbeast" 
-                  width={120} 
-                  height={120} 
-                  className="rounded-lg"
+                  width={150} 
+                  height={150} 
+                  className="rounded-lg hover:scale-125 "
                 />
+                 
               </div>
+              <span className="absolute bottom-0 left-0 border-t border-gray-700 w-full p-6 pl-1  ">
+                <a href="https://x.com/coinbeastai" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 p-2 rounded-lg">
+                  <Image src="/xpn.svg" alt="XPN" width={28} height={28} className="mr-3" />
+                 
+                </a>
+              </span>
             </div>
           </nav>
         </div>
@@ -406,7 +408,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col bg-black overflow-y-auto lg:ml-64 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         {/* Navbar */}
-        <nav className="h-16 w-full fixed top-[72px] left-0 right-0 bg-[#000] flex items-center justify-between px-4 z-40 border-b border-gray-700">
+        <nav className="h-16 w-full fixed top-[72px] left-0 right-0 bg-[#1d2127] flex items-center justify-between px-4 z-40 border-b border-gray-700">
           <div className="flex items-center">
             <button 
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -419,23 +421,35 @@ export const AIChat: React.FC<AIChatProps> = () => {
               onChange={(e) => setSelectedModel(e.target.value)}
               className="bg-transparent text-gray-300 border-none rounded-lg px-3 py-1"
             >
-              <option value="GPT-4o">GPT-4o ("omni")</option>
-              <option value="Claude 3 Sonnet">Claude 3 Sonnet</option>
-              <option value="Gemini">Gemini 1.5 Flash</option>
+              <option value="GPT-4o">Coinbeast v1 (beta)</option>
+              <option value="Claude 3 Sonnet" disabled>V2 (coming soon)</option>
+              <option value="Gemini" disabled>V3 (coming soon)</option>
             </select>
           </div>
           <div className="flex items-center space-x-4">
             {messages.length > 0 && (
               <>
-                <button
-                  onClick={() => setShowClearModal(true)}
-                  className="text-gray-300 hover:text-white"
-                >
-                  <Icon icon="solar:trash-bin-trash-bold" width="20" height="20" />
-                </button>
-                <button className="text-gray-300 hover:text-white">
-                  <Icon icon="solar:share-bold" width="20" height="20" />
-                </button>
+                <div className="relative group">
+                  <button
+                    onClick={() => setShowClearModal(true)}
+                    className="text-gray-300 hover:text-white"
+                  >
+                    <Icon icon="solar:trash-bin-trash-bold" width="20" height="20" />
+                  </button>
+                  <div className="absolute top-full right-0 transform mt-2 px-3 py-1.5 bg-[#1d2127] text-white text-sm rounded-lg shadow-lg border border-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                    Clear chat
+                    <div className="absolute top-0 left-4 transform -translate-y-1/2 rotate-45 w-2 h-2 bg-[#1d2127] border-l border-t border-gray-600"></div>
+                  </div>
+                </div>
+                <div className="relative group">
+                  <button className="text-gray-300 hover:text-white">
+                    <Icon icon="solar:share-bold" width="20" height="20" />
+                  </button>
+                  <div className="absolute top-full right-0 transform mt-2 px-3 py-1.5 bg-[#1d2127] text-white text-sm rounded-lg shadow-lg border border-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                    Coming soon!
+                    <div className="absolute top-0 left-4 transform -translate-y-1/2 rotate-45 w-2 h-2 bg-[#1d2127] border-l border-t border-gray-600"></div>
+                  </div>
+                </div>
               </>
             )}
           </div>
@@ -490,7 +504,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
             </div>
           ) : (
             <>
-              <div className="flex-1 overflow-y-auto pb-[120px]" style={{ height: 'calc(100vh - 72px - 64px)' }}>
+              <div className="flex-1 overflow-y-auto w-full xl:w-[80vw] mx-auto bg-[#000] pb-[120px]" style={{ height: 'calc(100vh - 72px - 64px)' }}>
                 {messages.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center px-4" style={{ backgroundImage: 'url(/cb2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
@@ -499,11 +513,42 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     <p className="text-lg mt-3 bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text text-transparent">
                       how can I help you?
                     </p>
+                    
+                    {/* Message Suggestions */}
+                    <div className="mt-8 flex flex-col gap-3 w-full max-w-md">
+                      <button
+                        onClick={() => {
+                          setInput("What is my wallet balance?");
+                          handleSend();
+                        }}
+                        className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
+                      >
+                        What is my wallet balance?
+                      </button>
+                      <button
+                        onClick={() => {
+                          setInput("Fetch trending tokens");
+                          handleSend();
+                        }}
+                        className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
+                      >
+                        Fetch trending tokens
+                      </button>
+                      <button
+                        onClick={() => {
+                          setInput("what is the price of solana?");
+                          handleSend();
+                        }}
+                        className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
+                      >
+                        what is the price of solana?
+                      </button>
+                    </div>
                   </div>
                 ) : (
-                  <div className="max-w-3xl mx-auto py-8 px-4">
+                  <div className="w-full mx-auto relative  py-8 px-4">
                     {messages.map((m, i) => (
-                      <div key={i} className={`flex items-start space-x-4 mb-8 ${m.role === "user" ? "flex-row-reverse" : ""}`}>
+                      <div key={i} className={`flex items-start  w-fit space-x-4 mb-8 ${m.role === "user" ? "flex-row-reverse right-0 justify-self-end" : "left-0"}`}>
                         <div className="flex-shrink-0">
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${m.role === "user" ? "bg-[#2658DD]" : "bg-[#2e2f2e]"}`}>
                             {m.role === "user" ? (
@@ -516,13 +561,13 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         <div className={`flex-1 ${m.role === "user" ? "text-right" : ""}`}>
                           <div className={`flex items-center mb-1 ${m.role === "user" ? "justify-end" : ""}`}>
                             <span className="text-sm font-medium text-gray-300 mr-2">
-                              {m.role === "user" ? "You" : "Phantom Agent"}
+                              {m.role === "user" ? "You" : "Coinbeast Agent"}
                             </span>
                             <span className="text-xs text-gray-500">
                               {getCurrentTime()}
                             </span>
                           </div>
-                          <div className={`prose prose-sm max-w-none text-gray-200 ${m.role === "user" ? "text-right" : ""}`}>
+                          <div className={`prose prose-sm max-w-none text-gray-200 ${m.role === "user" ? "text-right" : ""} ${m.role === "assistant" ? "bg-[#232b36] p-4 rounded-lg" : "bg-[#232b36] p-4 rounded-lg" }`}>
                             {typeof m.content === "string" ? (
                               <div dangerouslySetInnerHTML={{ __html: marked(m.content) }} />
                             ) : Array.isArray(m.content) ? (
@@ -578,7 +623,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center mb-1">
-                            <span className="text-sm font-medium text-gray-300">Phantom Agent</span>
+                            <span className="text-sm font-medium text-gray-300">Coinbeast Agent</span>
                           </div>
                           <TypingAnimation />
                         </div>
@@ -591,7 +636,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
               {/* Input Area */}
               <div id="input-area" className="border-t border-gray-700 fixed bottom-0 left-0 right-0 bg-[#000] p-6 flex items-center justify-center z-10">
                 <div className="w-full lg:max-w-[40vw] px-4">
-                  <div className="relative flex flex-col bg-[#2B3542] rounded-xl border border-gray-600 p-4">
+                  <div className="relative flex flex-col bg-[#2B3542] lg:ml-[100px] lg:min-w-[40vw] rounded-xl border border-gray-600 p-4">
                     {/* Text Input - Always on top */}
                     <textarea
                       className="w-full min-h-[24px] bg-transparent border-none text-white placeholder-gray-400 focus:outline-none focus:ring-0 resize-none px-4 mb-4"
@@ -639,11 +684,12 @@ export const AIChat: React.FC<AIChatProps> = () => {
                                 God Mode
                               </button>
                               <button
+                                disabled
                                 onClick={() => {
                                   setSelectedTool('analytics');
                                   setShowTools(false);
                                 }}
-                                className="w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700 flex items-center"
+                                className="w-full text-left px-4 py-2 text-gray-700  hover:bg-gray-700 flex items-center"
                               >
                                 <Icon icon="solar:graph-new-bold" className="mr-2" width="18" height="18" />
                                 Analytics
@@ -653,22 +699,30 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         </div>
 
                         {/* Voice Input Button */}
-                        <button
-                          className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700"
-                          data-tooltip-id="voice-tooltip"
-                          data-tooltip-content="Coming Soon"
-                        >
-                          <Icon icon="solar:microphone-bold" width="20" height="20" />
-                        </button>
+                        <div className="relative group">
+                          <button
+                            className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700"
+                          >
+                            <Icon icon="solar:microphone-bold" width="20" height="20" />
+                          </button>
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1.5 bg-[#1d2127] text-white text-sm rounded-lg shadow-lg border border-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                            Voice mode coming soon!
+                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-[#1d2127] border-l border-t border-gray-600"></div>
+                          </div>
+                        </div>
 
                         {/* Voice Mode Button */}
-                        <button
-                          className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700"
-                          data-tooltip-id="voice-mode-tooltip"
-                          data-tooltip-content="Coming Soon"
-                        >
-                          <Icon icon="solar:voice-recognition-bold" width="20" height="20" />
-                        </button>
+                        {/* <div className="relative group">
+                          <button
+                            className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700"
+                          >
+                            <Icon icon="solar:voice-recognition-bold" width="20" height="20" />
+                          </button>
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 bg-[#1d2127] text-white text-sm rounded-lg shadow-lg border border-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                            Coming Soon
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-[#1d2127] border-r border-b border-gray-600"></div>
+                          </div>
+                        </div> */}
                         
                       </div>
 
