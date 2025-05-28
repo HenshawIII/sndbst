@@ -15,12 +15,12 @@ export default function About() {
         <div className="w-full lg:w-1/2">
           {/* Header */}
           <h1 className="text-5xl font-bold mb-8 bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">
-            What is Coinbeast Agent?
+            What is Coinbeast?
           </h1>
 
           {/* Intro */}
           <p className="text-xl text-gray-300 mb-12">
-            Coinbeast Agent is your intelligent blockchain companion, powered by advanced AI technology. 
+            Coinbeast is your intelligent blockchain companion, powered by advanced AI technology. 
             It helps you navigate the complex world of cryptocurrency with confidence and ease.
           </p>
 
@@ -76,7 +76,7 @@ export default function About() {
               <div className="absolute inset-[2px] bg-[#20242D] rounded-[10px]"></div>
               <div className="relative flex items-center gap-2 hover:scale-110 transition-all duration-200">
                 <Icon icon="solar:rocket-bold" width="24" height="24" className="text-white" />
-                <Link href="#hero" className="text-white">Launch Agent</Link>
+                <Link href="#hero" className="text-white">Launch App</Link>
               </div>
             </button>
             <div

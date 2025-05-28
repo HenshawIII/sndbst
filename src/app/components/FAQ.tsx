@@ -10,28 +10,28 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "What is Coinbeast AI Agent?",
-    answer: "Coinbeast AI Agent is an intelligent assistant powered by Solana Agent Kit that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
+    question: "What is Coinbeast?",
+    answer: "Coinbeast an intelligent assistant  that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
   },
   {
     question: "How do I connect my wallet?",
-    answer: "Simply click the 'Connect Wallet' button on the homepage. You'll need to have the Phantom wallet browser extension installed. The agent will guide you through the connection process."
+    answer: "Simply click the 'Connect Wallet' button on the homepage. You should have the Phantom wallet browser extension installed. Coinbeast will connect to your wallet automatically."
   },
   {
-    question: "What can the AI Agent do?",
-    answer: "The AI Agent can help you with various Solana blockchain operations including token transfers, checking balances, executing transactions, and providing insights about your wallet activities. It can also answer questions about Solana and help you understand blockchain concepts."
+    question: "What can Coinbeast do?",
+    answer: "Coinbeast can help you with various Solana blockchain operations including token transfers, checking balances, executing transactions, and providing insights about your wallet activities. It can also answer questions about Solana and help you understand blockchain concepts."
   },
   {
     question: "Is my wallet secure?",
-    answer: "Yes, your wallet remains secure as the AI Agent never has direct access to your private keys. All transactions require your explicit approval through the Phantom wallet interface."
+    answer: "Yes, your wallet remains secure as Coinbeast never has direct access to your private keys. All transactions require your explicit approval through the Phantom wallet interface."
   },
   {
     question: "How do I start a conversation?",
-    answer: "After connecting your wallet, simply type your question or request in the chat input field. The AI Agent will respond and guide you through any necessary steps for blockchain operations."
+    answer: "After connecting your wallet, simply type your question or request in the chat input field. Coinbeast will respond and guide you through any necessary steps for blockchain operations."
   },
   {
     question: "What tokens are supported?",
-    answer: "The AI Agent supports all Solana tokens, including SPL tokens. It can help you manage SOL and any other tokens in your wallet."
+    answer: "Coinbeast supports all Solana tokens, including SPL tokens. It can help you manage SOL and any other tokens in your wallet."
   }
 ];
 

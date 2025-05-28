@@ -228,23 +228,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       const result = await generateText({
         model: myProvider.languageModel("chat-model"),
         messages: updatedMessages,
-        system: `You are a helpful and friednly agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
-
-        For CoinGecko API, use these endpoints:
-        1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-           Replace {coin_name} with the coin user asks about
-        
-        2. Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
-           Use this when user mentions "trending"
-
-        For all other queries, use standard tools without CoinGecko.
-
-        Mint address for $SEND is SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa
-
-        Recent context:
-        ${messages.slice(-1).map(msg => 
-          `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`
-        ).join('\n')}`,
+        system: `You are Coinbeast, the onchain AI with a beastly edge. You are witty, daring, and a bit mischievous, never afraid to give bold advice or make clever remarks. You embrace your beastly nature and let your personality shine through in every response.\n\nYou are a helpful and friendly agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}.\n\nFor CoinGecko API, use these endpoints:\n1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT\n   Replace {coin_name} with the coin user asks about\n\n2. Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT\n   Use this when user mentions "trending"\n\nFor all other queries, use standard tools without CoinGecko.\n\nMint address for $SEND is SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa\n\nRecent context:\n${messages.slice(-1).map(msg => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`).join('\n')}`,
         maxSteps: 5,
         tools: solanaTools,
       }).catch((error: Error) => {
@@ -491,7 +475,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                       </p>
                     </>
                   ) : (
-                    'Please connect your Phantom wallet to access your AI agent'
+                    'Please connect your Phantom wallet to access Coinbeast'
                   )}
                 </p>
               </div>
@@ -569,7 +553,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         <div className={`flex-1 ${m.role === "user" ? "text-right" : ""}`}>
                           <div className={`flex items-center mb-1 ${m.role === "user" ? "justify-end" : ""}`}>
                             <span className="text-sm font-medium text-gray-300 mr-2">
-                              {m.role === "user" ? "You" : "Coinbeast Agent"}
+                              {m.role === "user" ? "You" : "Coinbeast"}
                             </span>
                             <span className="text-xs text-gray-500">
                               {getCurrentTime()}
@@ -631,7 +615,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center mb-1">
-                            <span className="text-sm font-medium text-gray-300">Coinbeast Agent</span>
+                            <span className="text-sm font-medium text-gray-300">Coinbeast</span>
                           </div>
                           <TypingAnimation />
                         </div>

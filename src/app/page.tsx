@@ -39,17 +39,31 @@ export default function LandingPage() {
           {/* Left side - Text content */}
           <div className="text-left space-y-8">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#3351FF]/10 rounded-full">
+              {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#3351FF]/10 rounded-full">
                 <span className="w-2 h-2 bg-[green] rounded-full animate-pulse"></span>
                 <span className="text-gray-400 font-medium">Coinbeast Agent v1.</span>
-              </div>
+              </div> */}
               <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-[#b5b3b3] to-[#5a5858] bg-clip-text text-transparent">
-                Your AI Agent with On-Chain Capabilities
+               Your onchain {'be(a)st'} friend
               </h1>
-              <p className="text-xl text-gray-300 max-w-xl">
-                Experience the power of AI combined with Solana blockchain technology. 
-                Interact with your assets, execute transactions, and get intelligent insights - all in one place.
+              <p className="text-xl text-gray-400 max-w-xl mt-2 mb-1">
+                Experience the power of AI combined with Solana blockchain technology.
               </p>
+              {/* Feature List */}
+              <ul className="space-y-3 mt-4 mb-2">
+                <li className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full bg-[#3ebd4d] inline-block"></span>
+                  <span className="text-lg text-gray-300">Interact with your assets</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full bg-[#3ebd4d] inline-block"></span>
+                  <span className="text-lg text-gray-300">Execute transactions</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full bg-[#3ebd4d] inline-block"></span>
+                  <span className="text-lg text-gray-300">Get intelligent insights – all in one place</span>
+                </li>
+              </ul>
             </div>
 
             {!authenticated ? (
@@ -70,7 +84,7 @@ export default function LandingPage() {
                   className="bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0] hover:bg-[#2B44E5] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors flex items-center gap-2"
                 >
                   
-                  <Link href="/chat">Chat with Agent</Link>
+                  <Link href="/chat">Chat with Coinbeast</Link>
                 </button>
               </div>
             )}
@@ -102,7 +116,7 @@ export default function LandingPage() {
               <div className="absolute -bottom-6 -right-6 bg-[#20242D] rounded-xl border border-[rgba(255,255,255,0.1)] p-4 shadow-xl">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <p className="text-white font-medium">Agent Online</p>
+                  <p className="text-white font-medium"> Online</p>
                 </div>
               </div>
             </div>
@@ -169,7 +183,7 @@ export default function LandingPage() {
           </a>
           </div>
           <div className="text-gray-400 text-sm flex flex-row-reverse gap-2 items-center justify-around">
-            <p>Coinbeast Agent v1.0</p>
+            <p>Coinbeast v1.0</p>
             
           </div>
         </div>

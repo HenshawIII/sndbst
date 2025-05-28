@@ -110,7 +110,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                     : 'text-gray-400 hover:text-white hover:bg-[rgba(255,255,255,0.05)]'
                 }`}
               >
-                Chat with AI
+                Launch App
               </Link>
               <Link 
                 href="/docs" 
@@ -201,7 +201,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              Chat with AI
+              Launch App
             </Link>
             <Link 
               href="/docs" 
