@@ -73,7 +73,7 @@ export default function LandingPage() {
                   className="bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0] hover:bg-[#2B44E5] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors flex items-center gap-2"
                 >
                   <Icon icon="solar:wallet-bold" className="text-white" width={24} height={24} />
-                  Connect Wallet to Start
+                  Connect to start
                 </button>
                 
               </div>
