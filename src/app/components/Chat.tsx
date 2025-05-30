@@ -178,9 +178,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
           },
         },
         process.env.NEXT_PUBLIC_RPC_URL as string,
+       
         {
-          COINGECKO_DEMO_API_KEY: process.env.NEXT_PUBLIC_COINGECKO_API_KEY || "CG-oSn1QEGnT1dixqQi3cTrRHDT"
+          COINGECKO_DEMO_API_KEY: process.env.NEXT_PUBLIC_COINGECKO_API_KEY || "CG-oSn1QEGnT1dixqQi3cTrRHDT",
+          PINATA_JWT: process.env.NEXT_PUBLIC_PINATA_JWT as string,
         }
+        
+
+        
       ).use(TokenPlugin)
       .use(MiscPlugin)
       .use(BlinksPlugin)
@@ -228,7 +233,22 @@ export const AIChat: React.FC<AIChatProps> = () => {
       const result = await generateText({
         model: myProvider.languageModel("chat-model"),
         messages: updatedMessages,
-        system: `You are Coinbeast, the onchain AI with a beastly edge. You are witty, daring, and a bit mischievous, never afraid to give bold advice or make clever remarks. You embrace your beastly nature and let your personality shine through in every response.\n\nYou are a helpful and friendly agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}.\n\nWhen a user asks to buy a coin, always ask for the coin's mint address unless it is a known token. For the 'trump' token, use mint address 6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN. For any other token, request the mint address from the user instead of guessing.\n\nFor CoinGecko API, use these endpoints:\n1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT\n   Replace {coin_name} with the coin user asks about\n\n2. Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT\n   Use this when user mentions "trending"\n\nFor all other queries, use standard tools without CoinGecko.\n\nMint address for $SEND is SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa\n\nRecent context:\n${messages.slice(-1).map(msg => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`).join('\n')}`,
+        system: `You are Coinbeast, the onchain AI with a beastly edge. You are witty, daring, and a bit mischievous, never afraid to give bold advice or make clever remarks. You embrace your beastly nature and let your personality shine through in every response.
+        You are a helpful and clever agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
+        When the user asks for the price of Solana (SOL), always use the FETCH_PRICE tool. Do not use the PYTH_FETCH_PRICE tool for this. Only use FETCH_PRICE for all Solana related price queries.
+
+        For CoinGecko API, use these endpoints:
+        1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+           Replace {coin_name} with the coin user asks about
+        
+        2. Trending tokens: https://api.coingecko.com/api/v3/search/trending?x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
+           Use this when user mentions "trending"
+
+       
+
+        For all other queries, use standard tools without CoinGecko.
+
+        Mint address for $SEND is SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa\n\nRecent context:\n${messages.slice(-1).map(msg => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`).join('\n')}`,
         maxSteps: 5,
         tools: solanaTools,
       }).catch((error: Error) => {
@@ -528,12 +548,12 @@ export const AIChat: React.FC<AIChatProps> = () => {
                       </button>
                       <button
                         onClick={() => {
-                          setInput("what is the price of solana?");
+                          setInput("How much is sol?");
                           handleSend();
                         }}
                         className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
                       >
-                        what is the price of solana?
+                        How much is sol?
                       </button>
                     </div>
                   </div>
@@ -648,7 +668,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         <div className="relative">
                           <button
                             onClick={() => setShowTools(!showTools)}
-                            className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700"
+                            className="text-gray-300 hover:text-white rounded-lg hover:bg-gray-700"
                             data-tooltip-id="tools-tooltip"
                             data-tooltip-content="Tools"
                           >
@@ -694,7 +714,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                         {/* Voice Input Button */}
                         <div className="relative group">
                           <button
-                            className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700"
+                            className="text-gray-300 hover:text-white rounded-lg hover:bg-gray-700"
                           >
                             <Icon icon="solar:microphone-bold" width="20" height="20" />
                           </button>
@@ -724,7 +744,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                       <button
                         onClick={handleSend}
                         disabled={isLoading || !input.trim()}
-                        className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700 disabled:opacity-50"
+                        className="text-gray-300 hover:text-white rounded-lg hover:bg-gray-700 disabled:opacity-50"
                       >
                         {isLoading ? (
                           <svg className="animate-spin w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
