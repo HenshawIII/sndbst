@@ -269,6 +269,11 @@ export const AIChat: React.FC<AIChatProps> = () => {
         When the user asks for the price of Solana (SOL), always use the FETCH_PRICE tool. Do not use the PYTH_FETCH_PRICE tool for this. Only use FETCH_PRICE for all Solana related price queries.
         Use your GET_COINGECKO tools for trending token related queries.
 
+        IMPORTANT:
+        When using the GET_TOKEN_DATA tool, pass this route to the getTokenDataByAddress function call: /api/jupiter/token/{mint}
+        Replace {mint} with the mint address user asks about
+        Do not use any other tools for this.
+
         If you try to check for a rug pull and get a 4XX error , fetch the token details using the available tools.
         return the fetched token details in a neutral way without making definitive statements about rug pulls.
         Focus on presenting the facts and let users draw their own conclusions.

@@ -1,6 +1,6 @@
 import { PublicKey } from "@solana/web3.js";
 
-async function getTokenDataByAddress(mint: PublicKey) {
+export async function getTokenDataByAddress(mint: PublicKey) {
   try {
     if (!mint) {
       throw new Error("Mint address is required");
