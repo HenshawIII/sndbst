@@ -87,7 +87,7 @@ importers:
         version: 2.1.0
       axios:
         specifier: ^1.7.4
-        version: 1.9.0(debug@4.4.1)
+        version: 1.9.0
       browserify-zlib:
         specifier: ^0.2.0
         version: 0.2.0
@@ -122,7 +122,7 @@ importers:
         specifier: ^0.13.0
         version: 0.13.0
       marked:
-        specifier: ^15.0.8
+        specifier: ^15.0.12
         version: 15.0.12
       next:
         specifier: ^14.2.20
@@ -194,6 +194,9 @@ importers:
       patch-package:
         specifier: ^8.0.0
         version: 8.0.0
+      pnpm:
+        specifier: 10.4.0
+        version: 10.4.0
       postcss:
         specifier: ^8.5.3
         version: 8.5.4
@@ -5321,6 +5324,11 @@ packages:
     resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==}
     engines: {node: '>=10.13.0'}
 
+  pnpm@10.4.0:
+    resolution: {integrity: sha512-a4SdB4fZf49OHwOpuP+PA4554VPW8RrlOa58Q1/555bfaoYsmRUCaVx/no+siur8GsWo2rR+NhSNGDgy2IbdUg==}
+    engines: {node: '>=18.12'}
+    hasBin: true
+
   poseidon-lite@0.2.1:
     resolution: {integrity: sha512-xIr+G6HeYfOhCuswdqcFpSX47SPhm0EpisWJ6h7fHlWwaVIvH3dLnejpatrtw6Xc6HaLrpq05y7VRfvDmDGIog==}
 
@@ -6888,7 +6896,7 @@ snapshots:
 
   '@aptos-labs/aptos-client@1.2.0(axios@1.9.0)(got@11.8.6)':
     dependencies:
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       got: 11.8.6
 
   '@aptos-labs/aptos-dynamic-transaction-composer@0.1.3': {}
@@ -7289,7 +7297,7 @@ snapshots:
       nanoid: 3.3.4
       node-cache: 5.1.2
       rpc-websockets: 7.5.1
-      solana-bankrun: 0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
+      solana-bankrun: 0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
       strict-event-emitter-types: 2.0.0
       tweetnacl: 1.0.3
       tweetnacl-util: 0.15.1
@@ -7320,7 +7328,7 @@ snapshots:
       '@solana/web3.js': 1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@switchboard-xyz/on-demand': 1.2.42(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
       '@triton-one/yellowstone-grpc': 1.3.0
-      anchor-bankrun: 0.3.0(@coral-xyz/anchor@0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))(@solana/web3.js@1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(solana-bankrun@0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10))
+      anchor-bankrun: 0.3.0(@coral-xyz/anchor@0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))(@solana/web3.js@1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(solana-bankrun@0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))
       nanoid: 3.3.4
       node-cache: 5.1.2
       rpc-websockets: 7.5.1
@@ -7911,6 +7919,16 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
+  '@irys/arweave@0.0.2':
+    dependencies:
+      asn1.js: 5.4.1
+      async-retry: 1.3.3
+      axios: 1.9.0
+      base64-js: 1.5.1
+      bignumber.js: 9.3.0
+    transitivePeerDependencies:
+      - debug
+
   '@irys/arweave@0.0.2(debug@4.4.1)':
     dependencies:
       asn1.js: 5.4.1
@@ -7931,7 +7949,7 @@ snapshots:
   '@irys/query@0.0.8':
     dependencies:
       async-retry: 1.3.3
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
     transitivePeerDependencies:
       - debug
 
@@ -7987,7 +8005,7 @@ snapshots:
       algosdk: 1.24.1(encoding@0.1.13)
       arbundles: 0.11.2(arweave@1.15.7)(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
       async-retry: 1.3.3
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       base64url: 3.0.1
       bignumber.js: 9.3.0
       bs58: 5.0.0
@@ -9547,7 +9565,7 @@ snapshots:
     dependencies:
       '@pythnetwork/price-service-sdk': 1.8.0
       '@types/ws': 8.18.1
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       axios-retry: 3.9.1
       isomorphic-ws: 4.0.1(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       ts-log: 2.2.7
@@ -9628,7 +9646,7 @@ snapshots:
       '@solana/buffer-layout': 4.0.1
       '@solana/spl-token': 0.4.13(@solana/web3.js@1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.1.3)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       big.js: 6.2.2
       bn.js: 5.2.2
       dayjs: 1.11.13
@@ -10692,11 +10710,11 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@solana/spl-token@0.3.7(@solana/web3.js@1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(encoding@0.1.13)(typescript@4.9.5)(utf-8-validate@5.0.10)':
+  '@solana/spl-token@0.3.7(@solana/web3.js@1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(encoding@0.1.13)(typescript@4.9.5)(utf-8-validate@5.0.10)':
     dependencies:
       '@solana/buffer-layout': 4.0.1
       '@solana/buffer-layout-utils': 0.2.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@4.9.5)(utf-8-validate@5.0.10)
-      '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
+      '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
       buffer: 6.0.3
     transitivePeerDependencies:
       - bufferutil
@@ -10966,7 +10984,7 @@ snapshots:
       '@coral-xyz/anchor': 0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
       '@coral-xyz/anchor-new': '@coral-xyz/anchor@0.30.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)'
       '@solanafm/kinobi-lite': 0.12.4
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -11004,7 +11022,7 @@ snapshots:
     dependencies:
       '@jup-ag/api': 6.0.42
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       typescript: 5.8.3
     transitivePeerDependencies:
       - bufferutil
@@ -11015,7 +11033,7 @@ snapshots:
   '@solworks/soltoolkit-sdk@0.0.23(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@solana/buffer-layout': 4.0.1
-      '@solana/spl-token': 0.3.7(@solana/web3.js@1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(encoding@0.1.13)(typescript@4.9.5)(utf-8-validate@5.0.10)
+      '@solana/spl-token': 0.3.7(@solana/web3.js@1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(encoding@0.1.13)(typescript@4.9.5)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@4.9.5)(utf-8-validate@5.0.10)
       '@types/bn.js': 5.1.6
       '@types/node': 18.19.110
@@ -11066,7 +11084,7 @@ snapshots:
   '@switchboard-xyz/common@2.5.19(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       big.js: 6.2.2
       bn.js: 5.2.2
       bs58: 6.0.0
@@ -11086,7 +11104,7 @@ snapshots:
   '@switchboard-xyz/common@2.5.19(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       big.js: 6.2.2
       bn.js: 5.2.2
       bs58: 6.0.0
@@ -11110,7 +11128,7 @@ snapshots:
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
       '@solworks/soltoolkit-sdk': 0.0.23(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@switchboard-xyz/common': 2.5.19(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       big.js: 6.2.2
       bs58: 5.0.0
       js-yaml: 4.1.0
@@ -11129,7 +11147,7 @@ snapshots:
       '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
       '@solworks/soltoolkit-sdk': 0.0.23(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@switchboard-xyz/common': 2.5.19(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       big.js: 6.2.2
       bs58: 5.0.0
       js-yaml: 4.1.0
@@ -12093,7 +12111,7 @@ snapshots:
 
   '@zodios/core@10.9.6(axios@1.9.0)(zod@3.25.42)':
     dependencies:
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       zod: 3.25.42
 
   abitype@1.0.8(typescript@5.1.3)(zod@3.22.4):
@@ -12173,13 +12191,13 @@ snapshots:
     dependencies:
       '@coral-xyz/anchor': 0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      solana-bankrun: 0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
+      solana-bankrun: 0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
 
-  anchor-bankrun@0.3.0(@coral-xyz/anchor@0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))(@solana/web3.js@1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(solana-bankrun@0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)):
+  anchor-bankrun@0.3.0(@coral-xyz/anchor@0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10))(@solana/web3.js@1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(solana-bankrun@0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)):
     dependencies:
       '@coral-xyz/anchor': 0.29.0(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.92.3(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      solana-bankrun: 0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
+      solana-bankrun: 0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
 
   anchor-client-gen@0.28.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10):
     dependencies:
@@ -12269,7 +12287,7 @@ snapshots:
       '@ethersproject/signing-key': 5.8.0
       '@ethersproject/transactions': 5.8.0
       '@ethersproject/wallet': 5.8.0
-      '@irys/arweave': 0.0.2(debug@4.4.1)
+      '@irys/arweave': 0.0.2
       '@noble/ed25519': 1.7.5
       base64url: 3.0.1
       bs58: 4.0.1
@@ -12454,7 +12472,15 @@ snapshots:
 
   axios@0.28.1:
     dependencies:
-      follow-redirects: 1.15.9(debug@4.4.1)
+      follow-redirects: 1.15.9(debug@4.3.4)
+      form-data: 4.0.2
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
+  axios@1.9.0:
+    dependencies:
+      follow-redirects: 1.15.9(debug@4.3.4)
       form-data: 4.0.2
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -15465,6 +15491,8 @@ snapshots:
 
   pngjs@5.0.0: {}
 
+  pnpm@10.4.0: {}
+
   poseidon-lite@0.2.1: {}
 
   possible-typed-array-names@1.1.0: {}
@@ -16167,25 +16195,9 @@ snapshots:
   solana-bankrun-linux-x64-musl@0.3.1:
     optional: true
 
-  solana-bankrun@0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10):
-    dependencies:
-      '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
-      bs58: 4.0.1
-    optionalDependencies:
-      solana-bankrun-darwin-arm64: 0.3.1
-      solana-bankrun-darwin-universal: 0.3.1
-      solana-bankrun-darwin-x64: 0.3.1
-      solana-bankrun-linux-x64-gnu: 0.3.1
-      solana-bankrun-linux-x64-musl: 0.3.1
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - typescript
-      - utf-8-validate
-
   solana-bankrun@0.3.1(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10):
     dependencies:
-      '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
+      '@solana/web3.js': 1.98.2(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.1.3)(utf-8-validate@5.0.10)
       bs58: 4.0.1
     optionalDependencies:
       solana-bankrun-darwin-arm64: 0.3.1
