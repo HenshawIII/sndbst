@@ -5,30 +5,14 @@ export async function GET(
   { params }: { params: { mint: string } }
 ) {
   try {
-    const response = await fetch(`https://tokens.jup.ag/token/${params.mint}`, {
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
+    // Make the request exactly like a browser would
+    const response = await fetch(`https://tokens.jup.ag/token/${params.mint}`);
     const data = await response.json();
-    return NextResponse.json(data, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Accept'
-      }
-    });
+    return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to fetch token data' },
-      { 
-        status: 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, OPTIONS',
-          'Access-Control-Allow-Headers': 'Accept'
-        }
-      }
+      { status: 500 }
     );
   }
 }
