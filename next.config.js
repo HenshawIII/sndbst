@@ -17,11 +17,11 @@ const nextConfig = {
       {
         source: "/api/coingecko/:path*",
         destination: "https://api.coingecko.com/api/v3/:path*",
-      },
-      {
-        source: "/api/jupiter/token/:mint",
-        destination: "https://tokens.jup.ag/token/:mint",
-      },
+      }
+      // {
+      //   source: "/api/jupiter/token/:mint",
+      //   destination: "https://tokens.jup.ag/token/:mint",
+      // },
     ];
   },
   images: {

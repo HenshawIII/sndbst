@@ -622,14 +622,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
                           </div>
                           <div className={`text-sm max-w-none text-gray-200 ${m.role === "user" ? "text-right" : ""} ${m.role === "assistant" ? "bg-[#3f4d62] p-[6px] rounded-md" : "bg-[#3f4d62]  p-[6px]  rounded-md" }`}>
                             {typeof m.content === "string" ? (
-                              <div dangerouslySetInnerHTML={{ __html: marked.parse(m.content,{async:false}) }} />
+                              <div dangerouslySetInnerHTML={{ __html: marked(m.content) }} />
                             ) : Array.isArray(m.content) ? (
                               m.content.map((part, idx) => {
                                 if (typeof part === "string") {
                                   return (
                                     <div
                                       key={idx}
-                                      dangerouslySetInnerHTML={{ __html: marked.parse(part,{async:false}) }}
+                                      dangerouslySetInnerHTML={{ __html: marked(part) }}
                                       className="prose prose-sm max-w-none"
                                     />
                                   );
@@ -639,7 +639,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                                     <div
                                       key={idx}
                                       dangerouslySetInnerHTML={{
-                                        __html: marked.parse(part.text,{async:false}),
+                                        __html: marked(part.text),
                                       }}
                                       className="prose prose-sm max-w-none"
                                     />
