@@ -18,6 +18,10 @@ const nextConfig = {
         source: "/api/coingecko/:path*",
         destination: "https://api.coingecko.com/api/v3/:path*",
       },
+      {
+        source: "/api/jupag/:path*",
+        destination: "https://tokens.jup.ag/:path*",
+      },
     ];
   },
   images: {
@@ -36,6 +40,23 @@ const nextConfig = {
           {
             key: 'x-cg-demo-api-key',
             value: 'CG-oSn1QEGnT1dixqQi3cTrRHDT',
+          },
+        ],
+      },
+      {
+        source: '/api/jupag/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type',
           },
         ],
       },

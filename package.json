@@ -30,7 +30,7 @@
     "@solana-agent-kit/plugin-defi": "2.0.2",
     "@solana-agent-kit/plugin-misc": "^2.0.3",
     "@solana-agent-kit/plugin-nft": "^2.0.3",
-    "@solana-agent-kit/plugin-token": "2.0.6",
+    "@solana-agent-kit/plugin-token": "2.0.2",
     "@solana/wallet-adapter-base": "^0.9.24",
     "@solana/web3.js": "^1.95.8",
     "@types/node": "20.3.1",
