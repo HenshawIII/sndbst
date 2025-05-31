@@ -106,35 +106,35 @@ export const AIChat: React.FC<AIChatProps> = () => {
     };
   }, []);
 
-  async function analyzeToken(mintAddress: string) {
-    try {
-      // Fetch token data from Jupiter
-      const tokenData = await fetch(`/api/jupag/token/${mintAddress}`).then(res => res.json());
+  // async function analyzeToken(mintAddress: string) {
+  //   try {
+  //     // Fetch token data from Jupiter
+  //     const tokenData = await fetch(`/api/jupag/token/${mintAddress}`).then(res => res.json());
       
-      // Analyze key metrics
-      const analysis = {
-        tokenInfo: {
-          name: tokenData.name,
-          symbol: tokenData.symbol,
-          decimals: tokenData.decimals,
-          volume: tokenData.daily_volume,
-          tags: tokenData.tags || []
-        },
-        riskFactors: {
-          hasFreezeAuthority: !!tokenData.freeze_authority,
-          hasMintAuthority: !!tokenData.mint_authority,
-          hasPermanentDelegate: !!tokenData.permanent_delegate,
-          isVerified: tokenData.tags?.includes('verified') || false,
-          hasHighVolume: tokenData.daily_volume > 1000000,
-          hasCoingeckoId: !!tokenData.extensions?.coingeckoId
-        }
-      };
+  //     // Analyze key metrics
+  //     const analysis = {
+  //       tokenInfo: {
+  //         name: tokenData.name,
+  //         symbol: tokenData.symbol,
+  //         decimals: tokenData.decimals,
+  //         volume: tokenData.daily_volume,
+  //         tags: tokenData.tags || []
+  //       },
+  //       riskFactors: {
+  //         hasFreezeAuthority: !!tokenData.freeze_authority,
+  //         hasMintAuthority: !!tokenData.mint_authority,
+  //         hasPermanentDelegate: !!tokenData.permanent_delegate,
+  //         isVerified: tokenData.tags?.includes('verified') || false,
+  //         hasHighVolume: tokenData.daily_volume > 1000000,
+  //         hasCoingeckoId: !!tokenData.extensions?.coingeckoId
+  //       }
+  //     };
       
-      return analysis;
-    } catch (error) {
-      return { error: "Failed to analyze token" };
-    }
-  }
+  //     return analysis;
+  //   } catch (error) {
+  //     return { error: "Failed to analyze token" };
+  //   }
+  // }
 
 
   const solanaTools = useMemo(() => {
@@ -269,42 +269,8 @@ export const AIChat: React.FC<AIChatProps> = () => {
         When the user asks for the price of Solana (SOL), always use the FETCH_PRICE tool. Do not use the PYTH_FETCH_PRICE tool for this. Only use FETCH_PRICE for all Solana related price queries.
         Use your GET_COINGECKO tools for trending token related queries.
 
-        for contract address related queries , use this endpoint, do not use any of your tools for this:
-        https://tokens.jup.ag/token/{contract_address}
-        Replace {contract_address} with the contract address user asks about
-
-        For token analysis and rug check, use this function, do not use any of your tools for this:
-        async function analyzeToken(mintAddress) {
-          try {
-            // Fetch token data from Jupiter
-            const tokenData = await fetch(\`/api/jupag/token/\${mintAddress}\`).then(res => res.json());
-            
-            // Analyze key metrics
-            const analysis = {
-              tokenInfo: {
-                name: tokenData.name,
-                symbol: tokenData.symbol,
-                decimals: tokenData.decimals,
-                volume: tokenData.daily_volume,
-                tags: tokenData.tags || []
-              },
-              riskFactors: {
-                hasFreezeAuthority: !!tokenData.freeze_authority,
-                hasMintAuthority: !!tokenData.mint_authority,
-                hasPermanentDelegate: !!tokenData.permanent_delegate,
-                isVerified: tokenData.tags?.includes('verified') || false,
-                hasHighVolume: tokenData.daily_volume > 1000000,
-                hasCoingeckoId: !!tokenData.extensions?.coingeckoId
-              }
-            };
-            
-            return analysis;
-          } catch (error) {
-            return { error: "Failed to analyze token" };
-          }
-        }
-
-        When analyzing tokens, present the data in a neutral way without making definitive statements about rug pulls.
+        If you try to check for a rug pull and get a 4XX error , fetch the token details using the available tools.
+        return the fetched token details in a neutral way without making definitive statements about rug pulls.
         Focus on presenting the facts and let users draw their own conclusions.
 
         For CoinGecko API, use these endpoints:
