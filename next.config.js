@@ -43,23 +43,23 @@ const nextConfig = {
           },
         ],
       },
-      // {
-      //   source: '/api/jupag/:path*',
-      //   headers: [
-      //     {
-      //       key: 'Access-Control-Allow-Origin',
-      //       value: '*',
-      //     },
-      //     {
-      //       key: 'Access-Control-Allow-Methods',
-      //       value: 'GET, OPTIONS',
-      //     },
-      //     {
-      //       key: 'Access-Control-Allow-Headers',
-      //       value: 'Content-Type',
-      //     },
-      //   ],
-      // },
+      {
+        source: '/api/jupag/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Accept',
+          },
+        ],
+      },
     ];
   },
   webpack: (config, { isServer }) => {
