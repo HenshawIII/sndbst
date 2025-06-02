@@ -28,26 +28,30 @@ export default function StartTrading() {
         
         <div className="relative">
           <div className="flex flex-col items-center text-center space-y-8">
-            <div className="space-y-4 max-w-2xl">
+            {/* <div className="space-y-4 max-w-2xl">
               <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">Start Trading COINBEAST</h2>
               <p className="text-gray-400 text-lg">
                 Copy the token address below to start trading $BEAST on your favorite DEX. 
                 Make sure to verify the contract address before trading.
               </p>
-            </div>
+            </div> */}
             
             <div className="w-full max-w-2xl space-y-6">
               <div className="flex items-center justify-between bg-[rgba(255,255,255,0.05)] px-6 py-4 rounded-xl group/address hover:bg-[rgba(255,255,255,0.08)] transition-colors">
-                <div className="flex-1 min-w-0 mr-4">
-                  <span className="text-gray-300 font-mono text-base block truncate">
+                <div className="flex-1 min-w-0 mr-4 flex items-center gap-2">
+                  <span className="text-xs font-bold text-gray-400 px-2 py-1 rounded">
+                    CA :
+                  </span>
+                  <span className="text-gray-300 font-mono text-base block truncate blur-sm select-none">
                     {TOKEN_ADDRESS}
                   </span>
                 </div>
                 <button
-                  onClick={copyToClipboard}
+                  // onClick={copyToClipboard}
                   className="flex-shrink-0 p-2 hover:bg-[rgba(255,255,255,0.1)] rounded-lg transition-colors"
                 >
                   <Icon
+                  
                     icon={isCopied ? "solar:check-circle-bold" : "solar:copy-bold"}
                     className={`${isCopied ? 'text-green-500' : 'text-gray-400'} hover:text-white transition-colors`}
                     width="24"
@@ -56,15 +60,16 @@ export default function StartTrading() {
                 </button>
               </div>
               
-              <a
-                href={`https://solscan.io/token/${TOKEN_ADDRESS}`}
-                target="_blank"
+              <button
+                // href={`https://solscan.io/token/${TOKEN_ADDRESS}`}
+                // target="_blank"
+                
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0]  text-white rounded-xl transition-colors w-full"
               >
                 <Icon icon="solar:chart-bold" width="24" height="24" />
                 View on Solscan
-              </a>
+              </button>
             </div>
           </div>
         </div>

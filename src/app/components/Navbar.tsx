@@ -167,7 +167,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       </div>
 
       {/* Desktop Navbar */}
-      <div className="hidden md:flex relative top-0 left-0 w-full z-[1000] bg-transparent backdrop-blur-sm items-center justify-between h-24 px-12">
+      <div className="hidden md:flex relative top-0 left-0 w-full z-[1000] bg-transparent backdrop-blur-sm items-center justify-between h-24 xl:px-6 px-2">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">

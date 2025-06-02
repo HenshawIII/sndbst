@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { marked } from "marked";
 import { toast } from "sonner";
@@ -34,6 +33,39 @@ type AIChatProps = {
 
 };
 
+const SUGGESTION_TABS = [
+  {
+    key: "general",
+    label: "General",
+    icon: <Icon icon="solar:home-2-bold" width={20} height={20} />,
+    questions: [
+      "What is my wallet balance?",
+      "Fetch trending tokens",
+      "How much is sol?"
+    ]
+  },
+  {
+    key: "inquire",
+    label: "Inquire",
+    icon: <Icon icon="solar:search-bold" width={20} height={20} />,
+    questions: [
+      "Show me my recent transactions",
+      "What NFTs do I own?",
+      "What is the price of RAY?"
+    ]
+  },
+  {
+    key: "send",
+    label: "Send",
+    icon: <Icon icon="solar:arrow-up-bold" width={20} height={20} />,
+    questions: [
+      "Send 1 SOL to this address: ...",
+      "Send all my USDC to my other wallet",
+      "How do I send tokens?"
+    ]
+  }
+];
+
 // Add this component at the top level, before the AIChat component
 const TypingAnimation = () => {
   return (
@@ -59,6 +91,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const [godMode, setGodMode] = useState(false);
   const [showClearModal, setShowClearModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showAccountModal, setShowAccountModal] = useState(false);
   const { phantom, connected, publicKey } = usePhantomWallet();
   const bottomRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
@@ -67,6 +100,8 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [showTools, setShowTools] = useState(false);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
+  const [balance, setBalance] = useState<number | null>(null);
+  const [activeSuggestionTab, setActiveSuggestionTab] = useState("general");
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
@@ -140,6 +175,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   useEffect(() => {
     const originalFetch = window.fetch;
     window.fetch = async (input, init) => {
+      console.log("fetching ", input);
       if (
         typeof input === "string" &&
         input.startsWith("https://tokens.jup.ag/token/")
@@ -355,6 +391,15 @@ export const AIChat: React.FC<AIChatProps> = () => {
     return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
 
+  useEffect(() => {
+    if (publicKey) {
+      const connection = new Connection(process.env.NEXT_PUBLIC_RPC_URL as string);
+      connection.getBalance(publicKey).then(lamports => {
+        setBalance(lamports / 1e9);
+      });
+    }
+  }, [publicKey]);
+
   return (
     <div className="flex h-screen bg-[#20242D]">
       {/* Overlay */}
@@ -368,16 +413,16 @@ export const AIChat: React.FC<AIChatProps> = () => {
       {/* Sidebar */}
       <div 
         ref={sidebarRef}
-        className={`fixed top-[72px] bottom-0 left-0 w-64 bg-[#1d2127] transform ${
+        className={`fixed top-[72px] bottom-0 left-0 w-64 bg-[#1a1f27]  transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 transition-transform duration-200 ease-in-out z-30`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-4 border-b border-gray-700">
-            <h2 className="text-xl font-semibold text-white">Coinbeast</h2>
-          </div>
+          {/* <div className="p-4 border-b border-gray-700"> */}
+            {/* <h2 className="text-xl font-semibold text-white">Coinbeast</h2> */}
+          {/* </div> */}
           <nav className="flex-1 p-4">
-            <ul className="space-y-2">
+            <ul className="space-y-2 mt-20">
               <li>
                 <Link href="/" className="group flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
                   <Icon icon="solar:home-2-bold" className="mr-3" width="20" height="20" />
@@ -477,7 +522,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col bg-black overflow-y-auto lg:ml-64 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         {/* Navbar */}
-        <nav className="h-16 w-full fixed top-[72px] left-0 right-0 bg-[#1d2127] flex items-center justify-between px-4 z-40 border-b border-gray-700">
+        <nav className="h-16 w-full fixed top-[72px] left-0 right-0 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg  transition-all duration-200 flex items-center justify-between px-4 z-40 border-b border-gray-700">
           <div className="flex items-center">
             <button 
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -492,7 +537,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
             >
               <option value="GPT-4o">Coinbeast v1 (beta)</option>
               <option value="Claude 3 Sonnet" disabled>V2 (coming soon)</option>
-              <option value="Gemini" disabled>V3 (coming soon)</option>
+             
             </select>
           </div>
           <div className="flex items-center space-x-4">
@@ -520,6 +565,20 @@ export const AIChat: React.FC<AIChatProps> = () => {
                   </div>
                 </div>
               </>
+            )}
+            {publicKey && (
+              <button
+                className="flex items-center bg-[#2658DD] hover:bg-[#3ebd4d] text-white px-3 py-1 rounded-lg transition-all"
+                title="Show wallet address and balance"
+                onClick={() => setShowAccountModal(true)}
+              >
+                <span className="font-mono text-xs mr-2">
+                  {publicKey.toString().slice(0, 4)}...{publicKey.toString().slice(-4)}
+                </span>
+                <span className="font-semibold text-xs">
+                  {balance !== null ? `${balance.toFixed(4)} SOL` : "Loading..."}
+                </span>
+              </button>
             )}
           </div>
         </nav>
@@ -581,39 +640,45 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                       Welcome, {publicKey?.toString().slice(0, 4)}...{publicKey?.toString().slice(-4)}
                     </h1>
-                    <p className="text-lg mt-3 bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text text-transparent">
-                      how can I help you?
+                    <p className="text-lg mt-3 bg-gradient-to-r text-center from-gray-300 to-gray-400 bg-clip-text text-transparent">
+                      how can I help <br /> you?
                     </p>
                     
-                    {/* Message Suggestions */}
-                    <div className="mt-8 flex flex-col gap-3 w-full max-w-md">
-                      <button
-                        onClick={() => {
-                          setInput("What is my wallet balance?");
-                          handleSend();
-                        }}
-                        className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
-                      >
-                        What is my wallet balance?
-                      </button>
-                      <button
-                        onClick={() => {
-                          setInput("Fetch trending tokens");
-                          handleSend();
-                        }}
-                        className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
-                      >
-                        Fetch trending tokens
-                      </button>
-                      <button
-                        onClick={() => {
-                          setInput("How much is sol?");
-                          handleSend();
-                        }}
-                        className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
-                      >
-                        How much is sol?
-                      </button>
+                    {/* Message Suggestions with Tabs */}
+                    <div className="mt-8 w-full max-w-md">
+                      {/* Tab Headings */}
+                      <div className="flex mb-4 border-b mt-6 border-gray-700">
+                        {SUGGESTION_TABS.map(tab => (
+                          <button
+                            key={tab.key}
+                            onClick={() => setActiveSuggestionTab(tab.key)}
+                            className={`flex-1 flex items-center justify-center gap-2 py-2 px-1 text-sm font-medium transition
+                              ${activeSuggestionTab === tab.key
+                                ? "text-white border-b-2 border-[#3ebd4d] bg-[#2B3542]/60"
+                                : "text-gray-400 hover:text-white"
+                              }`}
+                            style={{ outline: "none" }}
+                          >
+                            {tab.icon}
+                            {tab.label}
+                          </button>
+                        ))}
+                      </div>
+                      {/* Tab Content */}
+                      <div className="flex flex-col gap-3">
+                        {SUGGESTION_TABS.find(tab => tab.key === activeSuggestionTab)?.questions.map((q, idx) => (
+                          <button
+                            key={q}
+                            onClick={() => {
+                              setInput(q);
+                              handleSend();
+                            }}
+                            className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
+                          >
+                            {q}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ) : (
@@ -638,7 +703,16 @@ export const AIChat: React.FC<AIChatProps> = () => {
                               {getCurrentTime()}
                             </span>
                           </div>
-                          <div className={`text-sm max-w-none text-gray-200 ${m.role === "user" ? "text-right" : ""} ${m.role === "assistant" ? "bg-[#3f4d62] p-[6px] rounded-md" : "bg-[#3f4d62]  p-[6px]  rounded-md" }`}>
+                          <div
+                            className={`
+                              text-sm 
+                              text-gray-200 
+                              ${m.role === "user" 
+                                ? "bg-white/20 backdrop-blur hover:shadow-lg  rounded-md px-[6px] py-[6px] inline-block break-words text-left max-w-[80vw] sm:max-w-[70vw] md:max-w-[60vw]" 
+                                : "bg-[#3f4d62]/70 px-[6px] py-[6px] rounded-md inline-block break-words text-left max-w-[70vw]"
+                              }
+                            `}
+                          >
                             {typeof m.content === "string" ? (
                               <div dangerouslySetInnerHTML={{ __html: marked(m.content) }} />
                             ) : Array.isArray(m.content) ? (
@@ -706,9 +780,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
               </div>
 
               {/* Input Area */}
-              <div id="input-area" className="border-t border-gray-700 fixed bottom-0 left-0 right-0 bg-[#000] p-6 flex items-center justify-center z-10">
+              <div id="input-area" className=" fixed bottom-0 left-0 right-0 bg-[#000] px-6 pb-6 pt-1 flex items-center justify-center z-10">
                 <div className="w-full lg:max-w-[40vw] px-4">
-                  <div className="relative flex flex-col bg-[#3f4d62] lg:ml-[100px] lg:min-w-[40vw] rounded-xl border border-gray-600 p-4">
+                  <div className="relative flex flex-col bg-[#3f4d62]/70 lg:ml-[100px] lg:min-w-[40vw] rounded-xl border border-gray-600 p-4">
                     {/* Text Input - Always on top */}
                     <textarea
                       className="w-full min-h-[24px] bg-transparent border-none text-white placeholder-gray-400 focus:outline-none focus:ring-0 resize-none px-4 mb-4"
@@ -883,6 +957,85 @@ export const AIChat: React.FC<AIChatProps> = () => {
                 }}
                 className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
               >
+                Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Account Modal */}
+      {showAccountModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+          <div className="bg-[#20242D] rounded-2xl p-8 w-full max-w-xs mx-4 border border-gray-700 relative">
+            {/* Close button */}
+            <button
+              className="absolute top-3 right-3 text-gray-400 hover:text-white"
+              onClick={() => setShowAccountModal(false)}
+              aria-label="Close"
+            >
+              <Icon icon="solar:close-circle-bold" width={28} height={28} />
+            </button>
+            {/* User Icon */}
+            <div className="flex flex-col items-center mb-6">
+              <div className="w-20 h-20 rounded-full bg-[#2658DD] flex items-center justify-center mb-3">
+                <Image src="/icons/user-icon.png" alt="User" width={48} height={48} className="object-contain" />
+              </div>
+              {/* Address with copy */}
+              <div className="flex items-center space-x-2 mb-2">
+                <span className="font-mono text-xs text-gray-200">
+                  {publicKey.toString().slice(0, 4)}...{publicKey.toString().slice(-4)}
+                </span>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(publicKey.toString());
+                    toast("Address copied to clipboard!");
+                  }}
+                  className="text-gray-400 hover:text-white"
+                  title="Copy address"
+                >
+                  <Icon icon="solar:copy-bold" width={18} height={18} />
+                </button>
+              </div>
+              {/* Full address (optional, for reference) */}
+              <div className="text-xs text-gray-500 break-all text-center mb-2">
+                {publicKey.toString()}
+              </div>
+              {/* Balance */}
+              <div className="text-sm text-gray-300 mb-4">
+                {balance !== null ? `${balance.toFixed(4)} SOL` : "Loading..."}
+              </div>
+            </div>
+            {/* Links */}
+            <div className="flex flex-col space-y-3">
+              <Link
+                href="/docs"
+                
+                className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
+              >
+                <Icon icon="solar:book-bold" className="mr-2" width={20} height={20} />
+                How to use
+              </Link>
+              <button
+                type="button"
+                disabled
+                data-tooltip-id="settings-tooltip"
+                data-tooltip-content="Coming soon!"
+                className="flex items-center text-gray-500 cursor-not-allowed px-3 py-2 rounded-lg transition relative"
+                style={{ opacity: 0.6 }}
+              >
+                <Icon icon="solar:settings-bold" className="mr-2" width={20} height={20} />
+                Configure
+              </button>
+              <Tooltip id="settings-tooltip" />
+              <button
+                onClick={() => {
+                  setShowAccountModal(false);
+                  setShowLogoutModal(true);
+                }}
+                className="flex items-center text-red-500 hover:text-red-400 px-3 py-2 rounded-lg hover:bg-red-500/10 transition"
+              >
+                <Icon icon="solar:logout-3-bold" className="mr-2" width={20} height={20} />
                 Log Out
               </button>
             </div>
