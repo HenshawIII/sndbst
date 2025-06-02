@@ -984,11 +984,11 @@ export const AIChat: React.FC<AIChatProps> = () => {
               {/* Address with copy */}
               <div className="flex items-center space-x-2 mb-2">
                 <span className="font-mono text-xs text-gray-200">
-                  {publicKey.toString().slice(0, 4)}...{publicKey.toString().slice(-4)}
+                  {publicKey?.toString().slice(0, 4)}...{publicKey?.toString().slice(-4)}
                 </span>
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText(publicKey.toString());
+                    navigator.clipboard.writeText(publicKey?.toString() || "");
                     toast("Address copied to clipboard!");
                   }}
                   className="text-gray-400 hover:text-white"
@@ -999,7 +999,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
               </div>
               {/* Full address (optional, for reference) */}
               <div className="text-xs text-gray-500 break-all text-center mb-2">
-                {publicKey.toString()}
+                {publicKey?.toString()}
               </div>
               {/* Balance */}
               <div className="text-sm text-gray-300 mb-4">
