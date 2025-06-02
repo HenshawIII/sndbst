@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { marked } from "marked";
 import { toast } from "sonner";
@@ -136,6 +137,23 @@ export const AIChat: React.FC<AIChatProps> = () => {
   //   }
   // }
 
+  useEffect(() => {
+    const originalFetch = window.fetch;
+    window.fetch = async (input, init) => {
+      if (
+        typeof input === "string" &&
+        input.startsWith("https://tokens.jup.ag/token/")
+      ) {
+        console.log("fetching token data");
+        const mint = input.split("/").pop();
+        return originalFetch(`/api/jupiter/token/${mint}`, init);
+      }
+      return originalFetch(input, init);
+    };
+    return () => {
+      window.fetch = originalFetch;
+    };
+  }, []);
 
   const solanaTools = useMemo(() => {
     if (phantom) {
