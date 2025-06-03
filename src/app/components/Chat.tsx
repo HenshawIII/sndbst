@@ -35,35 +35,67 @@ type AIChatProps = {
 
 const SUGGESTION_TABS = [
   {
-    key: "general",
-    label: "General",
-    icon: <Icon icon="solar:home-2-bold" width={20} height={20} />,
+    key: "swap",
+    label: "Swap",
+    icon: <Icon icon="solar:refresh-bold" width={20} height={20} />,
+    color: "border-[#b71ec0] border-2 text-white", // purple
     questions: [
-      "What is my wallet balance?",
-      "Fetch trending tokens",
-      "How much is sol?"
-    ]
-  },
-  {
-    key: "inquire",
-    label: "Inquire",
-    icon: <Icon icon="solar:search-bold" width={20} height={20} />,
-    questions: [
-      "Show me my recent transactions",
-      "What NFTs do I own?",
-      "What is the price of RAY?"
-    ]
+      "Swap 0.01 SOL to USDC",
+      "What's the best rate to swap SOL to USDC?",
+      "Swap 10 USDC to SOL",
+      "Swap all my SOL to BONK",
+    ],
   },
   {
     key: "send",
     label: "Send",
     icon: <Icon icon="solar:arrow-up-bold" width={20} height={20} />,
+    color: "border-[#3ebd4d] border-2 text-white", // green
     questions: [
-      "Send 1 SOL to this address: ...",
+      "Send 1 SOL to 2P4yA4......",
       "Send all my USDC to my other wallet",
-      "How do I send tokens?"
-    ]
-  }
+      "Send 0.5 SOL to my friend",
+      "How do I send tokens?",
+    ],
+  },
+  {
+    key: "social",
+    label: "Social",
+    icon: <Icon icon="solar:user-bold" width={20} height={20} />,
+    color: "border-[#b71ec0] border-2 text-white", // blue
+    questions: [
+      "Show my recent transactions",
+      "What NFTs do I own?",
+      "Share my wallet address",
+      "Show my profile",
+    ],
+  },
+  {
+    key: "bridge",
+    label: "Bridge",
+    icon: <Icon icon="solar:link-bold" width={20} height={20} />,
+    color: "bg-[#6c3ef7] text-white",
+    questions: [
+      "Bridge 1 SOL to Ethereum",
+      "How do I bridge USDC to Polygon?",
+      "Show bridge fees",
+      "Bridge all my tokens",
+    ],
+    disabled: true,
+  },
+  {
+    key: "stake",
+    label: "Stake",
+    icon: <Icon icon="solar:lock-bold" width={20} height={20} />,
+    color: "bg-[#2d3a8c] text-white",
+    questions: [
+      "Stake 5 SOL",
+      "Show my staking rewards",
+      "Unstake all my SOL",
+      "How do I stake tokens?",
+    ],
+    disabled: true,
+  },
 ];
 
 // Add this component at the top level, before the AIChat component
@@ -101,7 +133,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const [showTools, setShowTools] = useState(false);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
-  const [activeSuggestionTab, setActiveSuggestionTab] = useState("general");
+  const [activeSuggestionTab, setActiveSuggestionTab] = useState("social");
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
@@ -323,14 +355,41 @@ export const AIChat: React.FC<AIChatProps> = () => {
         When the user asks for the price of Solana (SOL), always use the FETCH_PRICE tool. Do not use the PYTH_FETCH_PRICE tool for this. Only use FETCH_PRICE for all Solana related price queries.
         Use your GET_COINGECKO tools for trending token related queries.
 
+        When you are asked to fetch or buy a token , ALWAYS ask for the contract address , do not try to buy a token without explicitly getting the contract address from the user EXCEPT FOR THE TOKENS IN THE LIST.
+
+        
+        When you are asked to fetch details on a token , if it is not in this list , ALWAYS ask for the contract address , do not try to fetch details on a token without checking the list first,ALWAYS Check the list FIRST for the token name, use the contract address if it is in the list,IF IT IS NOT IN THE LIST , explicitly getting the contract address from the user,ONLY IF it is not in the list.
+        THE LIST:
+        Trump : 6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN
+        USDC : EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+        POPCAT : 7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr
+        BONK : DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263
+        FARTCOIN : 9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump
+        JUPITER :JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN
+        AI16Z : HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC
+        EURC:HzwqbKZw8HxMN6bF2yFZNrht3c2iXXzpKcFu7uBEDKtr
+        TETHER:Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+        USDT:Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+        RENDER:rndrizKT3MK1iimdxRdWabcF7Zg7AR5T4nud4EkHBof
+        JUP:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN
+        DOGWIFHAT:EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm
+        WIF:EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm
+        PYTH:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3
+        ORCA:orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE
+        WOO:Dz8VutERqbHR2aFL5A3s1Ky4dG1unJT1jUFXXPaY9ytX
+        GMT:7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx
+        MEOW:BUhS5coXEt9hcxN3JSpGYUWSKbNo96RsKu52LcMo12rf
+        
+        
+
+        If you try to check for a rug pull and get a 4XX error , fetch the token details using the available tools.
+        return the fetched token details in a neutral way without making definitive statements about rug pulls.
+        Focus on presenting the facts and let users draw their own conclusions. 
+
         IMPORTANT:
         When using the GET_TOKEN_DATA tool, pass this route to the getTokenDataByAddress function call: /api/jupiter/token/{mint}
         Replace {mint} with the mint address user asks about
         Do not use any other tools for this.
-
-        If you try to check for a rug pull and get a 4XX error , fetch the token details using the available tools.
-        return the fetched token details in a neutral way without making definitive statements about rug pulls.
-        Focus on presenting the facts and let users draw their own conclusions.
 
         For CoinGecko API, use these endpoints:
         1. Search coins: https://api.coingecko.com/api/v3/search?query={coin_name}&x_cg_demo_api_key=CG-oSn1QEGnT1dixqQi3cTrRHDT
@@ -644,37 +703,48 @@ export const AIChat: React.FC<AIChatProps> = () => {
                       how can I help <br /> you?
                     </p>
                     
-                    {/* Message Suggestions with Tabs */}
-                    <div className="mt-8 w-full max-w-md">
+                    {/* Message Suggestions with Tabs (Template style) */}
+                    <div className="mt-8 w-full max-w-2xl mx-auto">
                       {/* Tab Headings */}
-                      <div className="flex mb-4 border-b mt-6 border-gray-700">
-                        {SUGGESTION_TABS.map(tab => (
+                      <div className="flex gap-3 mb-8">
+                        {SUGGESTION_TABS.map((tab) => (
                           <button
                             key={tab.key}
-                            onClick={() => setActiveSuggestionTab(tab.key)}
-                            className={`flex-1 flex items-center justify-center gap-2 py-2 px-1 text-sm font-medium transition
-                              ${activeSuggestionTab === tab.key
-                                ? "text-white border-b-2 border-[#3ebd4d] bg-[#2B3542]/60"
-                                : "text-gray-400 hover:text-white"
-                              }`}
-                            style={{ outline: "none" }}
+                            onClick={() => !tab.disabled && setActiveSuggestionTab(tab.key)}
+                            className={`flex items-center gap-2 px-6 py-2 rounded-full font-medium transition
+                              ${
+                                activeSuggestionTab === tab.key
+                                  ? `${tab.color} shadow-lg`
+                                  : "bg-[#23232b] text-gray-300 hover:bg-[#23232b]/80"
+                              }
+                              ${tab.disabled ? "opacity-50 cursor-not-allowed relative" : ""}
+                            `}
+                            style={{
+                              minWidth: 100,
+                              border: activeSuggestionTab === tab.key ? "2px solid #6c3ef7" : "none",
+                            }}
+                            disabled={tab.disabled}
+                            data-tooltip-id={tab.disabled ? `tab-tooltip-${tab.key}` : undefined}
+                            data-tooltip-content={tab.disabled ? "Coming soon!" : undefined}
                           >
                             {tab.icon}
                             {tab.label}
                           </button>
                         ))}
                       </div>
-                      {/* Tab Content */}
-                      <div className="flex flex-col gap-3">
-                        {SUGGESTION_TABS.find(tab => tab.key === activeSuggestionTab)?.questions.map((q, idx) => (
+                      {/* Example Questions */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                        {SUGGESTION_TABS.find(tab => tab.key === activeSuggestionTab)?.questions.map((q, i) => (
                           <button
                             key={q}
                             onClick={() => {
                               setInput(q);
                               handleSend();
                             }}
-                            className="w-full text-left px-4 py-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 text-gray-300 hover:text-white rounded-lg border border-gray-600/50 hover:border-gray-500 transition-all duration-200"
+                            className="flex items-center gap-3 bg-[#2B3542]/50 hover:bg-[#2B3542]/80 transition text-white rounded-xl px-6 py-5 font-medium text-base shadow-md"
+                            style={{ minHeight: 56 }}
                           >
+                            <Icon icon="solar:refresh-bold" width={20} height={20} className="text-[#3ebd4d]" />
                             {q}
                           </button>
                         ))}
