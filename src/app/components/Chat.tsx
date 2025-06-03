@@ -227,6 +227,13 @@ export const AIChat: React.FC<AIChatProps> = () => {
         // Return the parsed data directly
         return await response.json();
       }
+      if (
+        typeof input === "string" &&
+        input.startsWith("https://pump.fun/api/ipfs")
+      ) {
+        // Redirect to your proxy route, preserving method/body/headers
+        return originalFetch("/api/pump/ipfs", init);
+      }
       return originalFetch(input, init);
     };
     return () => {
