@@ -17,7 +17,8 @@ import TestCoinGecko from './components/TestCoinGecko';
 import About from "./components/About";
 import Examples from "./components/Examples";
 import Template from "./components/Template";
-export default function LandingPage() {
+import Setup from "./components/Setup";
+  export default function LandingPage() {
   const router = useRouter();
   const { ready, authenticated, login } = usePrivy();
 
@@ -162,7 +163,9 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+     
       <About />
+      <Setup />
       <Examples />
       <Template />
       <FAQ />

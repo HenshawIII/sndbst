@@ -5,39 +5,39 @@ import { Tooltip } from "react-tooltip";
 
 const TABS = [
   {
-    key: "swap",
-    label: "Swap",
+    key: "inquiry",
+    label: "Inquiry",
     icon: <Icon icon="solar:refresh-bold" width={20} height={20} />,
     color: "border-[#b71ec0] border-2 text-white", // purple
     questions: [
-      "Swap 0.01 SOL to USDC",
-      "What's the best rate to swap SOL to USDC?",
-      "Swap 10 USDC to SOL",
-      "Swap all my SOL to BONK",
+      "fetch trending tokens",
+      "fetch details of trump coin",
+      "Scan EKpQG... for rug pulls ",
+      "Get details of EKpQG... coin",
     ],
   },
   {
-    key: "send",
-    label: "Send",
+    key: "transact",
+    label: "Transact",
     icon: <Icon icon="solar:arrow-up-bold" width={20} height={20} />,
     color: "border-[#3ebd4d] border-2 text-white", // green
     questions: [
       "Send 1 SOL to 2P4yA4......",
-      "Send all my USDC to my other wallet",
+      "buy 0.1sol worth of trump coin",
       "Send 0.5 SOL to my friend",
-      "How do I send tokens?",
+      "How do I buy tokens?",
     ],
   },
   {
-    key: "social",
-    label: "Social",
+    key: "general",
+    label: "General",
     icon: <Icon icon="solar:user-bold" width={20} height={20} />,
     color: "border-[#b71ec0] border-2 text-white", // blue
     questions: [
-      "Show my recent transactions",
-      "What NFTs do I own?",
-      "Share my wallet address",
-      "Show my profile",
+      "Hi ,what is your name",
+      "What is your wallet address?",
+      "what can you do for me?",
+      "what is the price of SOL?",
     ],
   },
   {
@@ -51,7 +51,7 @@ const TABS = [
       "Show bridge fees",
       "Bridge all my tokens",
     ],
-    disabled: true,
+    disabled: false,
   },
   {
     key: "stake",
@@ -64,12 +64,12 @@ const TABS = [
       "Unstake all my SOL",
       "How do I stake tokens?",
     ],
-    disabled: true,
+    disabled: false,
   },
 ];
 
 export default function Template() {
-  const [activeTab, setActiveTab] = useState("swap");
+  const [activeTab, setActiveTab] = useState("general");
   const active = TABS.find((tab) => tab.key === activeTab);
 
   return (

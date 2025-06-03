@@ -27,6 +27,8 @@ import Image from "next/image";
 import { createAgentTools } from '../utils/agentTools';
 import { Tooltip } from 'react-tooltip';
 import Link from "next/link";
+import { usePrivy } from "@privy-io/react-auth";
+
 // import DefiPlugin from "@solana-agent-kit/plugin-defi";
 
 type AIChatProps = {
@@ -35,39 +37,39 @@ type AIChatProps = {
 
 const SUGGESTION_TABS = [
   {
-    key: "swap",
-    label: "Swap",
+    key: "inquiry",
+    label: "Inquiry",
     icon: <Icon icon="solar:refresh-bold" width={20} height={20} />,
     color: "border-[#b71ec0] border-2 text-white", // purple
     questions: [
-      "Swap 0.01 SOL to USDC",
-      "What's the best rate to swap SOL to USDC?",
-      "Swap 10 USDC to SOL",
-      "Swap all my SOL to BONK",
+      "fetch trending tokens",
+      "fetch details of trump coin",
+      "Scan EKpQG... for rug pulls ",
+      "Get details of EKpQG... coin",
     ],
   },
   {
-    key: "send",
-    label: "Send",
+    key: "transact",
+    label: "Transact",
     icon: <Icon icon="solar:arrow-up-bold" width={20} height={20} />,
     color: "border-[#3ebd4d] border-2 text-white", // green
     questions: [
       "Send 1 SOL to 2P4yA4......",
-      "Send all my USDC to my other wallet",
+      "buy 0.1sol worth of trump coin",
       "Send 0.5 SOL to my friend",
-      "How do I send tokens?",
+      "How do I buy tokens?",
     ],
   },
   {
-    key: "social",
-    label: "Social",
+    key: "general",
+    label: "General",
     icon: <Icon icon="solar:user-bold" width={20} height={20} />,
     color: "border-[#b71ec0] border-2 text-white", // blue
     questions: [
-      "Show my recent transactions",
-      "What NFTs do I own?",
-      "Share my wallet address",
-      "Show my profile",
+      "Hi ,what is your name",
+      "What is your wallet address?",
+      "what can you do for me?",
+      "what is the price of SOL?",
     ],
   },
   {
@@ -133,8 +135,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const [showTools, setShowTools] = useState(false);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
-  const [activeSuggestionTab, setActiveSuggestionTab] = useState("social");
+  const [activeSuggestionTab, setActiveSuggestionTab] = useState("general");
 
+  const { authenticated, user, logout } = usePrivy();
   // Save messages to localStorage whenever they change
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -215,6 +218,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
         console.log("fetching token data");
         const mint = input.split("/").pop();
         return originalFetch(`/api/jupiter/token/${mint}`, init);
+      }
+      if (
+        typeof input === "string" &&
+        input.startsWith("https://api.coingecko.com/api/v3/simple/token_price/solana")
+      ) {
+        const response = await originalFetch(input, init);
+        // Return the parsed data directly
+        return await response.json();
       }
       return originalFetch(input, init);
     };
@@ -357,7 +368,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
 
         When you are asked to fetch or buy a token , ALWAYS ask for the contract address , do not try to buy a token without explicitly getting the contract address from the user EXCEPT FOR THE TOKENS IN THE LIST.
 
-        
+        Always return all the fields of the token details in the response.
         When you are asked to fetch details on a token , if it is not in this list , ALWAYS ask for the contract address , do not try to fetch details on a token without checking the list first,ALWAYS Check the list FIRST for the token name, use the contract address if it is in the list,IF IT IS NOT IN THE LIST , explicitly getting the contract address from the user,ONLY IF it is not in the list.
         THE LIST:
         Trump : 6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN
@@ -506,6 +517,18 @@ export const AIChat: React.FC<AIChatProps> = () => {
                   </span>
                 </a>
               </li>
+              <li>
+                <a href="#" className="group flex items-center text-gray-300 hover:text-white p-2 rounded-lg hover:bg-gray-700">
+                  <Icon icon="solar:star-bold" className="mr-3" width="20" height="20" />
+                  <span className="flex items-center">
+                    Points
+                    <span className="ml-2 flex items-center bg-yellow-500/10 text-yellow-400 text-xs font-semibold px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Icon icon="mdi:clock-fast" width={14} height={14} className="mr-1" />
+                      Coming Soon
+                    </span>
+                  </span>
+                </a>
+              </li>
               
              
             </ul>
@@ -614,7 +637,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     <div className="absolute top-0 left-4 transform -translate-y-1/2 rotate-45 w-2 h-2 bg-[#1d2127] border-l border-t border-gray-600"></div>
                   </div>
                 </div>
-                <div className="relative group">
+                <div className="relative group hidden md:block">
                   <button className="text-gray-300 hover:text-white">
                     <Icon icon="solar:share-bold" width="20" height="20" />
                   </button>
@@ -706,12 +729,12 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     {/* Message Suggestions with Tabs (Template style) */}
                     <div className="mt-8 w-full max-w-2xl mx-auto">
                       {/* Tab Headings */}
-                      <div className="flex gap-3 mb-8">
+                      <div className="grid grid-cols-3 md:grid-cols-5 items-center justify-center gap-3 mb-8">
                         {SUGGESTION_TABS.map((tab) => (
                           <button
                             key={tab.key}
                             onClick={() => !tab.disabled && setActiveSuggestionTab(tab.key)}
-                            className={`flex items-center gap-2 px-6 py-2 rounded-full font-medium transition
+                            className={`flex items-center justify-center gap-2 px-6 py-2 rounded-full font-medium transition
                               ${
                                 activeSuggestionTab === tab.key
                                   ? `${tab.color} shadow-lg`
@@ -756,9 +779,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
                     {messages.map((m, i) => (
                       <div key={i} className={`flex items-start w-fit space-x-4 mb-8 ${m.role === "user" ? "flex-row-reverse right-0 justify-self-end" : "left-0"}`}>
                         <div className="flex-shrink-0">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${m.role === "user" ? "bg-[#2658DD]" : "bg-[#2e2f2e]"}`}>
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${m.role === "user" ? "bg-blue-700/40 " : "bg-[#2e2f2e]"}`}>
                             {m.role === "user" ? (
-                              <Image src="/icons/user-icon.png" alt="User" width={24} height={24} className="object-contain" />
+                              <Image src="/user.png" alt="User" width={24} height={24} className="object-contain z-20" />
                             ) : (
                               <Image src="/coinbasee.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
                             )}
@@ -1020,9 +1043,9 @@ export const AIChat: React.FC<AIChatProps> = () => {
                 Cancel
               </button>
               <button
-                onClick={() => {
-                  clearChat();
-                  phantom?.disconnect();
+                onClick={async () => {
+                  await logout();
+                  window.location.href = "/";
                   setShowLogoutModal(false);
                 }}
                 className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
@@ -1048,8 +1071,8 @@ export const AIChat: React.FC<AIChatProps> = () => {
             </button>
             {/* User Icon */}
             <div className="flex flex-col items-center mb-6">
-              <div className="w-20 h-20 rounded-full bg-[#2658DD] flex items-center justify-center mb-3">
-                <Image src="/icons/user-icon.png" alt="User" width={48} height={48} className="object-contain" />
+              <div className="w-20 h-20 rounded-full bg-transparent flex items-center justify-center mb-3">
+                <Image src="/user.png" alt="User" width={48} height={48} className="object-contain" />
               </div>
               {/* Address with copy */}
               <div className="flex items-center space-x-2 mb-2">
@@ -1078,14 +1101,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
             </div>
             {/* Links */}
             <div className="flex flex-col space-y-3">
-              <Link
+              {/* <Link
                 href="/docs"
                 
                 className="flex items-center text-gray-300 hover:text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition"
               >
                 <Icon icon="solar:book-bold" className="mr-2" width={20} height={20} />
                 How to use
-              </Link>
+              </Link> */}
               <button
                 type="button"
                 disabled
