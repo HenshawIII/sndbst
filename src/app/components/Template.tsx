@@ -44,7 +44,7 @@ const TABS = [
     key: "bridge",
     label: "Bridge",
     icon: <Icon icon="solar:link-bold" width={20} height={20} />,
-    color: "bg-[#6c3ef7] text-white", // purple
+    color: "border-[#b71ec0] border-2 text-white", // purple
     questions: [
       "Bridge 1 SOL to Ethereum",
       "How do I bridge USDC to Polygon?",
@@ -57,7 +57,7 @@ const TABS = [
     key: "stake",
     label: "Stake",
     icon: <Icon icon="solar:lock-bold" width={20} height={20} />,
-    color: "bg-[#2d3a8c] text-white", // blue
+    color: "border-[#b71ec0] border-2 text-white", // blue
     questions: [
       "Stake 5 SOL",
       "Show my staking rewards",

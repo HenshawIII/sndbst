@@ -18,6 +18,7 @@ import About from "./components/About";
 import Examples from "./components/Examples";
 import Template from "./components/Template";
 import Setup from "./components/Setup";
+import Afil from "./components/Afil";
   export default function LandingPage() {
   const router = useRouter();
   const { ready, authenticated, login } = usePrivy();
@@ -168,6 +169,7 @@ import Setup from "./components/Setup";
       <Setup />
       <Examples />
       <Template />
+      <Afil />
       <FAQ />
       
       {/* Footer */}

@@ -210,12 +210,12 @@ export const AIChat: React.FC<AIChatProps> = () => {
   useEffect(() => {
     const originalFetch = window.fetch;
     window.fetch = async (input, init) => {
-      console.log("fetching ", input);
+      // console.log("fetching ", input);
       if (
         typeof input === "string" &&
         input.startsWith("https://tokens.jup.ag/token/")
       ) {
-        console.log("fetching token data");
+        // console.log("fetching token data");
         const mint = input.split("/").pop();
         return originalFetch(`/api/jupiter/token/${mint}`, init);
       }
@@ -326,22 +326,22 @@ export const AIChat: React.FC<AIChatProps> = () => {
       .use(BlinksPlugin)
       // .use(NftPlugin);
 
-      console.log("Available agent actions:", agent.actions);
+      // console.log("Available agent actions:", agent.actions);
       
       // Only use Vercel AI tools
       const tools = createVercelAITools(agent, agent.actions);
-      console.log("Created tools:", tools);
-      console.log("Tool descriptions:", Object.entries(tools).map(([name, tool]) => ({
-        name,
-        description: tool.description
-      })));
-      
+      // console.log("Created tools:", tools);
+      // console.log("Tool descriptions:", Object.entries(tools).map(([name, tool]) => ({
+      //   name,
+      //   description: tool.description
+      // })));
+      ``
       // Log CoinGecko related tools
       const coingeckoTools = Object.entries(tools).filter(([name, tool]) => 
         name.toLowerCase().includes('coingecko') || 
         (tool.description && tool.description.toLowerCase().includes('coingecko'))
       );
-      console.log("CoinGecko related tools:", coingeckoTools);
+      // console.log("CoinGecko related tools:", coingeckoTools);
       
       return tools;
     }
@@ -358,7 +358,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
     setIsLoading(true);
 
     try {
-      console.log("Sending message with tools:", solanaTools);
+      // console.log("Sending message with tools:", solanaTools);
       
       // Get the last 5 messages for context
       const recentContext = messages.slice(-5).map(msg => 
@@ -433,7 +433,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
         throw error;
       });
 
-      console.log("AI response:", result);
+      // console.log("AI response:", result);
 
       setMessages([
         ...updatedMessages,
