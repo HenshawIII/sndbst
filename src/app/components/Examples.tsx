@@ -119,8 +119,8 @@ export default function Examples() {
                 dangerouslySetInnerHTML={{ __html: msg.content }}
               />
               {msg.role === "user" && (
-                <div className="w-10 h-10 rounded-lg bg-[#2658DD] flex items-center justify-center">
-                  <Image src="/icons/user-icon.png" alt="User" width={24} height={24} className="object-contain" />
+                <div className="w-10 h-10 rounded-lg bg-blue-700/40 flex items-center justify-center">
+                  <Image src="/user.png" alt="User" width={24} height={24} className="object-contain" />
                 </div>
               )}
             </div>
@@ -151,7 +151,7 @@ export default function Examples() {
                 />
                 {msg.role === "user" && (
                   <div className="w-10 h-10 rounded-lg bg-[#2658DD] flex items-center justify-center">
-                    <Image src="/icons/user-icon.png" alt="User" width={24} height={24} className="object-contain" />
+                    <Image src="/user.png" alt="User" width={24} height={24} className="object-contain" />
                   </div>
                 )}
               </div>

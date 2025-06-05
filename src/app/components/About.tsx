@@ -79,12 +79,12 @@ export default function About() {
                 <Link href="#hero" className="text-white">Launch App</Link>
               </div>
             </button>
-            <div
+            {/* <div
               className="w-full sm:w-auto px-8 py-4 bg-[#20242D] hover:bg-[#2A3240] text-white rounded-xl font-medium transition-colors border border-[rgba(255,255,255,0.1)] flex items-center justify-center gap-2"
             >
               <Icon icon="solar:notebook-square-bold" width="24" height="24" />
              <Link href="/docs"> Read the Docs</Link>
-            </div>
+            </div> */}
           </div>
         </div>
 

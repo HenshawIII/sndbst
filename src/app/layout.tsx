@@ -5,7 +5,7 @@ import { PhantomWalletProvider } from './components/PhantomWallet';
 import PrivyProv from './privyProv'
 import { Inter } from 'next/font/google';
 import TokenBanner from './components/TokenBanner';
-import { useEffect } from "react";
+// import { useEffect } from "react";
 // import { createPhantom } from "@phantom/wallet-sdk";
 
 const inter = Inter({ 

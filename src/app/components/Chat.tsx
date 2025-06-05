@@ -37,6 +37,18 @@ type AIChatProps = {
 
 const SUGGESTION_TABS = [
   {
+    key: "general",
+    label: "General",
+    icon: <Icon icon="solar:user-bold" width={20} height={20} className="text-gray-300" />,
+    color: "border-[#b71ec0] border-2 text-white", // blue
+    questions: [
+      "Hi ,what is your name",
+      "What is your wallet balance?",
+      "what can you do for me?",
+      "what is the price of SOL?",
+    ],
+  },
+  {
     key: "inquiry",
     label: "Inquiry",
     icon: <Icon icon="solar:refresh-bold" width={20} height={20} />,
@@ -51,7 +63,7 @@ const SUGGESTION_TABS = [
   {
     key: "transact",
     label: "Transact",
-    icon: <Icon icon="solar:arrow-up-bold" width={20} height={20} />,
+    icon: <Icon icon="solar:arrow-up-bold" width={20} height={20} className="text-gray-300 w-5 h-5 z-20" />,
     color: "border-[#3ebd4d] border-2 text-white", // green
     questions: [
       "Send 1 SOL to 2P4yA4......",
@@ -60,18 +72,7 @@ const SUGGESTION_TABS = [
       "How do I buy tokens?",
     ],
   },
-  {
-    key: "general",
-    label: "General",
-    icon: <Icon icon="solar:user-bold" width={20} height={20} />,
-    color: "border-[#b71ec0] border-2 text-white", // blue
-    questions: [
-      "Hi ,what is your name",
-      "What is your wallet address?",
-      "what can you do for me?",
-      "what is the price of SOL?",
-    ],
-  },
+ 
   {
     key: "bridge",
     label: "Bridge",
@@ -135,7 +136,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const [showTools, setShowTools] = useState(false);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
-  const [activeSuggestionTab, setActiveSuggestionTab] = useState("general");
+  const [activeSuggestionTab, setActiveSuggestionTab] = useState("transact");
 
   const { authenticated, user, logout } = usePrivy();
   // Save messages to localStorage whenever they change

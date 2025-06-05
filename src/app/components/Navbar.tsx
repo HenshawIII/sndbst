@@ -112,7 +112,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               >
                 Launch App
               </Link>
-              <Link 
+              {/* <Link 
                 href="/docs" 
                 onClick={() => setIsSidebarOpen(false)}
                 className={`text-sm font-medium transition-colors p-2 rounded-lg ${
@@ -122,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 }`}
               >
                 Docs
-              </Link>
+              </Link> */}
               <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="pl-2 flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
               <Image
                 src="/xpn.svg"
@@ -203,7 +203,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             >
               Launch App
             </Link>
-            <Link 
+            {/* <Link 
               href="/docs" 
               className={`text-sm font-medium transition-colors ${
                 isActive('/docs') 
@@ -212,7 +212,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               }`}
             >
               Docs
-            </Link>
+            </Link> */}
             <a 
               href="https://x.com/CoinbeastAI" 
               target="_blank"
