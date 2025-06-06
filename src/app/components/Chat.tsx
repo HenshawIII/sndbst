@@ -623,7 +623,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
             <select 
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
-              className="bg-transparent text-gray-300 border-none rounded-lg px-3 py-1"
+              className="bg-transparent text-gray-300 border-none hidden md:block rounded-lg px-3 py-1"
             >
               <option value="GPT-4o">Coinbeast v1 (beta)</option>
               <option value="Claude 3 Sonnet" disabled>V2 (coming soon)</option>
