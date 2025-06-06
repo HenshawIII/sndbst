@@ -92,7 +92,7 @@ export default function About() {
         <div className="w-full lg:w-1/2 flex justify-center items-center">
           <div className="relative w-full max-w-lg aspect-square">
             <Image
-              src="/cb2.jpg"
+              src="/coin01.jpeg"
               alt="Coinbeast Agent Interface"
               fill
               className="object-contain"

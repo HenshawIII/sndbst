@@ -18,7 +18,7 @@ const protocols = [
     { src: "/afil/mayan.png", alt: "Mayan" },
     { src: "/afil/pump.png", alt: "Pump" },
     { src: "/afil/pyth.png", alt: "Pyth" },
-    { src: "/afil/orca.png", alt: "Orca" },
+    { src: "/afil/Orca.png", alt: "Orca" },
     { src: "/afil/raydium.png", alt: "Raydium" },
   ],
   // Row 2
