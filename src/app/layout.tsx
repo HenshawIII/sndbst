@@ -27,8 +27,8 @@ function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <head>
-        <title>Coinbeast</title>
-        <link rel="icon" href="/coinbett.png" type="image/png" />
+        <title>Sendbeast</title>
+        <link rel="icon" href="/snd6.png" type="image/png" />
       </head>
       <body className={`h-full ${inter.className}`}>
       <div className=" !sticky !top-0 left-0 right-0 z-[9999]">

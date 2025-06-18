@@ -77,8 +77,8 @@ export default function Examples() {
      <div className="w-full lg:w-1/2 hidden md:flex justify-center items-center">
           <div className="relative w-full max-w-lg aspect-square">
             <Image
-              src="/cb2.jpg"
-              alt="Coinbeast Agent Interface"
+              src="/snd3.jpg"
+              alt="Sendbeast Agent Interface"
               fill
               className="object-contain"
               priority
@@ -92,7 +92,7 @@ export default function Examples() {
           <span className="w-3 h-3 rounded-full bg-red-400 inline-block" />
           <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block" />
           <span className="w-3 h-3 rounded-full bg-green-400 inline-block" />
-          <span className="ml-4 text-xs text-gray-400">coinbeast.app/chat</span>
+          <span className="ml-4 text-xs text-gray-400">Sendbeast.app/chat</span>
         </div>
         {/* Chat area */}
         <div className="bg-[#20242D]/80 rounded-b-2xl ml-4 md:ml-0 p-8 min-h-[400px] flex flex-col gap-6">
@@ -104,7 +104,7 @@ export default function Examples() {
             >
               {msg.role === "assistant" && (
                 <div className="w-10 h-10 rounded-lg bg-[#2e2f2e] flex items-center justify-center">
-                  <Image src="/coinbasee.png" alt="Coinbeast" width={32} height={32} className="rounded-lg" />
+                  <Image src="/snd6.png" alt="Sendbeast" width={32} height={32} className="rounded-lg" />
                 </div>
               )}
               <div
@@ -135,7 +135,7 @@ export default function Examples() {
               >
                 {msg.role === "assistant" && (
                   <div className="w-10 h-10 rounded-lg bg-[#2e2f2e] flex items-center justify-center">
-                    <Image src="/coinbasee.png" alt="Coinbeast" width={32} height={32} className="rounded-lg" />
+                    <Image src="/snd6.png" alt="Sendbeast" width={32} height={32} className="rounded-lg" />
                   </div>
                 )}
                 <div

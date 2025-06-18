@@ -123,7 +123,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               >
                 Docs
               </Link> */}
-              <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="pl-2 flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
+              <a href="https://x.com/SendbeastAI" target="_blank" rel="noopener noreferrer" className="pl-2 flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
               <Image
                 src="/xpn.svg"
                 width={32}
@@ -160,7 +160,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           {/* Logo at bottom */}
           <div className="p-4 border-t border-[rgba(255,255,255,0.1)] flex items-center justify-center  ">
             
-              <span className="text-white font-semibold text-center">Coinbeast Agent v1.0</span>
+              <span className="text-white font-semibold text-center">Sendbeast Agent v1.0</span>
             
           </div>
         </div>
@@ -172,7 +172,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link href="/" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
-                src="/coinbasee.png"
+                src="/snd6.png"
                 width={100}
                 height={100}
                 alt="Sendai Logo"
@@ -214,7 +214,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               Docs
             </Link> */}
             <a 
-              href="https://x.com/CoinbeastAI" 
+              href="https://x.com/SendbeastAI" 
               target="_blank"
               rel="noopener noreferrer"
               className={`text-sm font-medium transition-colors hover:scale-110`}

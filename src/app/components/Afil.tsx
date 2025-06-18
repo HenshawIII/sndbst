@@ -66,7 +66,7 @@ export const Afil: React.FC = () => (
         ))}
       </div>
       <div className="text-gray-400 text-center text-sm mt-4">
-        Coinbeast integrates with the leading blockchains, protocols, and wallets.&nbsp;
+        Sendbeast integrates with the leading blockchains, protocols, and wallets.&nbsp;
         {/* <Link href="mailto:contact@syntoprotocol.com" className="text-yellow-400 hover:underline">
           Contact us to integrate your protocol &gt;
         </Link> */}

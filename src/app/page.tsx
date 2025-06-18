@@ -44,7 +44,7 @@ import Afil from "./components/Afil";
             <div className="space-y-4">
               {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#3351FF]/10 rounded-full">
                 <span className="w-2 h-2 bg-[green] rounded-full animate-pulse"></span>
-                <span className="text-gray-400 font-medium">Coinbeast Agent v1.</span>
+                <span className="text-gray-400 font-medium">Sendbeast Agent v1.</span>
               </div> */}
               <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-[#b5b3b3] to-[#5a5858] bg-clip-text text-transparent">
                Your onchain {'be(a)st'} friend
@@ -87,7 +87,7 @@ import Afil from "./components/Afil";
                   className="bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0] hover:bg-[#2B44E5] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors flex items-center gap-2"
                 >
                   
-                  <Link href="/chat">Chat with Coinbeast</Link>
+                  <Link href="/chat">Chat with Sendbeast</Link>
                 </button>
               </div>
             )}
@@ -109,11 +109,11 @@ import Afil from "./components/Afil";
             <div className="absolute inset-0 = from-[#3351FF]/20 to-transparent rounded-full"></div>
             <div className="relative">
               <Image
-                src="/coinbasee.png"
+                src="/snd6.png"
                 alt="AI Agent Character"
-                width={600}
-                height={600}
-                className="w-full h-auto"
+                width={500}
+                height={500}
+                className="z-20"
                 priority
               />
               <div className="absolute -bottom-6 -right-6 bg-[#20242D] rounded-xl border border-[rgba(255,255,255,0.1)] p-4 shadow-xl">
@@ -122,6 +122,7 @@ import Afil from "./components/Afil";
                   <p className="text-white font-medium"> Online</p>
                 </div>
               </div>
+              <div className='w-0 h-0 absolute shadow-[0_0_13vw_10vw_#73581f] md:top-[12vw] md:left-[20vw] -z-[1]'></div>
             </div>
           </div>
         </div>
@@ -176,8 +177,8 @@ import Afil from "./components/Afil";
       <footer className="py-8 px-4 border-t border-[rgba(255,255,255,0.1)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 md:gap-4 mb-4 md:mb-0">
-            <Image src="/cb1.jpg" alt="Agent Character" width={80} height={80} className="rounded-lg" />
-            <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <Image src="/snd6.png" alt="Agent Character" width={80} height={80} className="rounded-lg" />
+            <a href="https://x.com/SendbeastAI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
                 src="/xpn.svg"
@@ -191,7 +192,7 @@ import Afil from "./components/Afil";
           </a>
           </div>
           <div className="text-gray-400 text-sm flex flex-row-reverse gap-2 items-center justify-around">
-            <p>Coinbeast v1.0</p>
+            <p>Sendbeast v1.0</p>
             
           </div>
         </div>

@@ -66,7 +66,7 @@ export default function Docs() {
             Documentation
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl">
-            Learn how to use Coinbeast to its full potential. From basic setup to advanced features.
+            Learn how to use Sendbeast to its full potential. From basic setup to advanced features.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export default function Docs() {
             <h2 className="text-3xl font-bold text-white mb-6">Getting Started</h2>
             <div className="prose prose-invert max-w-none">
               <p className="text-gray-300 mb-6">
-                Coinbeast is designed to be your intelligent companion in the world of cryptocurrency trading. 
+                Sendbeast is designed to be your intelligent companion in the world of cryptocurrency trading. 
                 Let us walk through the setup process and basic usage.
               </p>
 
@@ -98,8 +98,8 @@ export default function Docs() {
                       <span className="text-[#3ebd4d] font-semibold">2</span>
                     </div>
                     <div>
-                      <h4 className="text-white font-medium mb-2">Launch Coinbeast</h4>
-                      <p className="text-gray-400">Once logged in, Coinbeast will check for phantom wallet extension and connect to it</p>
+                      <h4 className="text-white font-medium mb-2">Launch Sendbeast</h4>
+                      <p className="text-gray-400">Once logged in, Sendbeast will check for phantom wallet extension and connect to it</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -108,7 +108,7 @@ export default function Docs() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">Start Interacting</h4>
-                      <p className="text-gray-400">Begin by asking Coinbeast about market conditions or wallet balances.</p>
+                      <p className="text-gray-400">Begin by asking Sendbeast about market conditions or wallet balances.</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -117,7 +117,7 @@ export default function Docs() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">Get Insights</h4>
-                      <p className="text-gray-400">Ask Coinbeast to get insights about a specific token or fetch trending tokens.</p>
+                      <p className="text-gray-400">Ask Sendbeast to get insights about a specific token or fetch trending tokens.</p>
                     </div>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ export default function Docs() {
               <div className="relative w-full h-[400px] mb-8 rounded-xl overflow-hidden">
                 <Image
                   src="/coinbasee.png"
-                  alt="Coinbeast Agent Interface"
+                  alt="Sendbeast Agent Interface"
                   width={600}
                   height={600}
                   className="object-cover"
@@ -198,7 +198,7 @@ export default function Docs() {
             <h2 className="text-3xl font-bold text-white mb-6">Market Analysis</h2>
             <div className="bg-[#000] rounded-xl p-6 mb-6 ">
               <p className="text-gray-300">
-                Use Coinbeast to get real-time market data, price trends, and analytics for your favorite tokens. Ask about current prices, historical performance, or trending assets to stay ahead in the market.
+                Use Sendbeast to get real-time market data, price trends, and analytics for your favorite tokens. Ask about current prices, historical performance, or trending assets to stay ahead in the market.
               </p>
             </div>
           </section>
@@ -214,7 +214,7 @@ export default function Docs() {
             </div>
             <div className="bg-[#000] rounded-xl p-6 mb-6">
               <p className="text-gray-300">
-                Discover and implement trading strategies with the help of Coinbeast. Whether you are a beginner or an experienced trader, get suggestions for DCA, swing trading, or custom strategies tailored to your goals.
+                Discover and implement trading strategies with the help of Sendbeast. Whether you are a beginner or an experienced trader, get suggestions for DCA, swing trading, or custom strategies tailored to your goals.
               </p>
             </div>
           </section>
@@ -225,13 +225,13 @@ export default function Docs() {
             <div className="bg-[#000] rounded-xl p-6">
               <h3 className="text-xl font-semibold text-white mb-4">Getting Your API Key</h3>
               <p className="text-gray-300 mb-6">
-                To integrate Coinbeast with your applications, you will need to obtain an API key. 
+                To integrate Sendbeast with your applications, you will need to obtain an API key. 
                 Follow these steps to get started:
               </p>
               <div className="bg-[#1A1F2A] rounded-xl p-6">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{`// Example API request
-const response = await fetch('https://api.coinbeast.ai/v1/analysis', {
+const response = await fetch('https://api.Sendbeast.ai/v1/analysis', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',

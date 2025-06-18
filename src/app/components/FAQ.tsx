@@ -10,28 +10,28 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "What is Coinbeast?",
-    answer: "Coinbeast an intelligent assistant  that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
+    question: "What is Sendbeast?",
+    answer: "Sendbeast an intelligent assistant  that can help you interact with the Solana blockchain.It can help you manage tokens, execute transactions, and provide insights about your on-chain activities."
   },
   {
     question: "How do I connect my wallet?",
-    answer: "Simply click the 'Connect Wallet' button on the homepage. You should have the Phantom wallet browser extension installed. Coinbeast will connect to your wallet automatically."
+    answer: "Simply click the 'Connect Wallet' button on the homepage. You should have the Phantom wallet browser extension installed. Sendbeast will connect to your wallet automatically."
   },
   {
-    question: "What can Coinbeast do?",
-    answer: "Coinbeast can help you with various Solana blockchain operations including token transfers, checking balances, executing transactions, and providing insights about your wallet activities. It can also answer questions about Solana and help you understand blockchain concepts."
+    question: "What can Sendbeast do?",
+    answer: "Sendbeast can help you with various Solana blockchain operations including token transfers, checking balances, executing transactions, and providing insights about your wallet activities. It can also answer questions about Solana and help you understand blockchain concepts."
   },
   {
     question: "Is my wallet secure?",
-    answer: "Yes, your wallet remains secure as Coinbeast never has direct access to your private keys. All transactions require your explicit approval through the Phantom wallet interface."
+    answer: "Yes, your wallet remains secure as Sendbeast never has direct access to your private keys. All transactions require your explicit approval through the Phantom wallet interface."
   },
   {
     question: "How do I start a conversation?",
-    answer: "After connecting your wallet, simply type your question or request in the chat input field. Coinbeast will respond and guide you through any necessary steps for blockchain operations."
+    answer: "After connecting your wallet, simply type your question or request in the chat input field. Sendbeast will respond and guide you through any necessary steps for blockchain operations."
   },
   {
     question: "What tokens are supported?",
-    answer: "Coinbeast supports all Solana tokens, including SPL tokens. It can help you manage SOL and any other tokens in your wallet."
+    answer: "Sendbeast supports all Solana tokens, including SPL tokens. It can help you manage SOL and any other tokens in your wallet."
   }
 ];
 

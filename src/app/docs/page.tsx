@@ -13,7 +13,7 @@ export default function DocsPage() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-around items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <Image src="/cb1.jpg" alt="Agent Character" width={80} height={80} className="rounded-lg" />
-            <a href="https://x.com/CoinbeastAI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <a href="https://x.com/SendbeastAI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
             <div className="rounded-2xl flex items-center justify-center">
               <Image
                 src="/xpn.svg"
@@ -27,7 +27,7 @@ export default function DocsPage() {
           </a>
           </div>
           <div className="text-gray-400 text-sm flex flex-row-reverse gap-2 items-center justify-around">
-            <p>Coinbeast Agent v1.0</p>
+            <p>Sendbeast Agent v1.0</p>
             
           </div>
         </div>

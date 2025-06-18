@@ -15,12 +15,12 @@ export default function About() {
         <div className="w-full lg:w-1/2">
           {/* Header */}
           <h1 className="text-5xl font-bold mb-8 bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">
-            What is Coinbeast?
+            What is Sendbeast?
           </h1>
 
           {/* Intro */}
           <p className="text-xl text-gray-300 mb-12">
-            Coinbeast is your intelligent blockchain companion, powered by advanced AI technology. 
+            Sendbeast is your intelligent blockchain companion, powered by advanced AI technology. 
             It helps you navigate the complex world of cryptocurrency with confidence and ease.
           </p>
 
@@ -92,8 +92,8 @@ export default function About() {
         <div className="w-full lg:w-1/2 flex justify-center items-center">
           <div className="relative w-full max-w-lg aspect-square">
             <Image
-              src="/coin01.jpeg"
-              alt="Coinbeast Agent Interface"
+              src="/snd2.jpg"
+              alt="Sendbeast Agent Interface"
               fill
               className="object-contain"
               priority

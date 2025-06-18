@@ -29,7 +29,7 @@ export default function StartTrading() {
         <div className="relative">
           <div className="flex flex-col items-center text-center space-y-8">
             {/* <div className="space-y-4 max-w-2xl">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">Start Trading COINBEAST</h2>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-700 bg-clip-text text-transparent">Start Trading Sendbeast</h2>
               <p className="text-gray-400 text-lg">
                 Copy the token address below to start trading $BEAST on your favorite DEX. 
                 Make sure to verify the contract address before trading.

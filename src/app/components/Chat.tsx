@@ -131,7 +131,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("Coinbeast v1 (beta)");
+  const [selectedModel, setSelectedModel] = useState("Sendbeast v1 (beta)");
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [showTools, setShowTools] = useState(false);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
@@ -369,7 +369,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       const result = await generateText({
         model: myProvider.languageModel("chat-model"),
         messages: updatedMessages,
-        system: `You are Coinbeast, the onchain AI with a beastly edge. You are witty, daring, and a bit mischievous, never afraid to give bold advice or make clever remarks. You embrace your beastly nature and let your personality shine through in every response.
+        system: `You are Sendbeast, the onchain AI with a beastly edge. You are witty, daring, and a bit mischievous, never afraid to give bold advice or make clever remarks. You embrace your beastly nature and let your personality shine through in every response.
         You are a helpful and clever agent that can interact onchain using the Solana Agent Kit. You have access to: ${solanaTools ? Object.keys(solanaTools).map(tool => `\n- ${tool}`).join('') : 'none'}. 
         When the user asks for the price of Solana (SOL), always use the FETCH_PRICE tool. Do not use the PYTH_FETCH_PRICE tool for this. Only use FETCH_PRICE for all Solana related price queries.
         Use your GET_COINGECKO tools for trending token related queries.
@@ -497,7 +497,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
       >
         <div className="flex flex-col h-full">
           {/* <div className="p-4 border-b border-gray-700"> */}
-            {/* <h2 className="text-xl font-semibold text-white">Coinbeast</h2> */}
+            {/* <h2 className="text-xl font-semibold text-white">Sendbeast</h2> */}
           {/* </div> */}
           <nav className="flex-1 p-4">
             <ul className="space-y-2 mt-20">
@@ -588,10 +588,10 @@ export const AIChat: React.FC<AIChatProps> = () => {
                 <Icon icon="solar:logout-3-bold" className="mr-3" width="20" height="20" />
                 <span className="text-sm font-medium">Log Out</span>
               </button>
-              <div className="w-full flex justify-center mt-24 space-x-4 bottom-52 absolute -left-[72px]">
+              <div className="w-full flex justify-center mt-24 space-x-4 bottom-40 absolute -left-[72px]">
                 <Image 
-                  src="/coinbasee.png" 
-                  alt="Coinbeast" 
+                  src="/snd6.png" 
+                  alt="Sendbeast" 
                   width={150} 
                   height={150} 
                   className="rounded-lg hover:scale-125 "
@@ -599,7 +599,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                  
               </div>
               <span className="absolute bottom-0 left-0 border-t border-gray-700 w-full p-6 pl-1  ">
-                <a href="https://x.com/coinbeastai" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 p-2 rounded-lg">
+                <a href="https://x.com/Sendbeastai" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 p-2 rounded-lg">
                   <Image src="/xpn.svg" alt="XPN" width={28} height={28} className="mr-3" />
                  
                 </a>
@@ -625,7 +625,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
               onChange={(e) => setSelectedModel(e.target.value)}
               className="bg-transparent text-gray-300 border-none hidden md:block rounded-lg px-3 py-1"
             >
-              <option value="GPT-4o">Coinbeast v1 (beta)</option>
+              <option value="GPT-4o">Sendbeast v1 (beta)</option>
               <option value="Claude 3 Sonnet" disabled>V2 (coming soon)</option>
              
             </select>
@@ -703,7 +703,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                       </p>
                     </>
                   ) : (
-                    'Please connect your Phantom wallet to access Coinbeast'
+                    'Please connect your Phantom wallet to access Sendbeast'
                   )}
                 </p>
               </div>
@@ -726,7 +726,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                 ref={chatContainerRef}
                 style={{ height: 'calc(100vh - 72px - 64px)' }}>
                 {messages.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center px-4" style={{ backgroundImage: 'url(/cb2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                  <div className="h-full flex flex-col items-center justify-center px-4" style={{ backgroundImage: 'url(/snd3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <h1 className="text-4xl font-medium bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                       Welcome, {publicKey?.toString().slice(0, 4)}...{publicKey?.toString().slice(-4)}
                     </h1>
@@ -791,14 +791,14 @@ export const AIChat: React.FC<AIChatProps> = () => {
                             {m.role === "user" ? (
                               <Image src="/user.png" alt="User" width={24} height={24} className="object-contain z-20" />
                             ) : (
-                              <Image src="/coinbasee.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
+                              <Image src="/snd6.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
                             )}
                           </div>
                         </div>
                         <div className={`flex-1 ${m.role === "user" ? "text-right" : ""}`}>
                           <div className={`flex items-center mb-1 ${m.role === "user" ? "justify-end" : ""}`}>
                             <span className="text-sm font-medium text-gray-300 mr-2">
-                              {m.role === "user" ? "You" : "Coinbeast"}
+                              {m.role === "user" ? "You" : "Sendbeast"}
                             </span>
                             <span className="text-xs text-gray-500">
                               {getCurrentTime()}
@@ -864,12 +864,12 @@ export const AIChat: React.FC<AIChatProps> = () => {
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
                           <div className="w-8 h-8 rounded-lg bg-[#2e2f2e] flex items-center justify-center">
-                            <Image src="/coinbasee.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
+                            <Image src="/snd6.png" alt="Sendai Logo" width={32} height={32} className="rounded-lg" />
                           </div>
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center mb-1">
-                            <span className="text-sm font-medium text-gray-300">Coinbeast</span>
+                            <span className="text-sm font-medium text-gray-300">Sendbeast</span>
                           </div>
                           <TypingAnimation />
                         </div>
@@ -918,7 +918,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
                                 className="w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700 flex items-center"
                               >
                                 <Icon icon="solar:chart-2-bold" className="mr-2" width="18" height="18" />
-                                Coinbeast Trader
+                                Sendbeast Trader
                               </button>
                               <button
                                 onClick={() => {

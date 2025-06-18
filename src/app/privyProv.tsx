@@ -34,7 +34,7 @@
           // Create embedded wallets for users who don't have a wallet
           appearance: {
               landingHeader: '',
-              loginMessage: 'Coinbeast',
+              loginMessage: 'Sendbeast',
               theme: 'light',
               accentColor: '#3351FF',
               showWalletLoginFirst: false,
