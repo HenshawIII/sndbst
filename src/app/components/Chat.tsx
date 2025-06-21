@@ -211,7 +211,7 @@ export const AIChat: React.FC<AIChatProps> = () => {
   useEffect(() => {
     const originalFetch = window.fetch;
     window.fetch = async (input, init) => {
-      // console.log("fetching ", input);
+      console.log("fetching ", input);
       if (
         typeof input === "string" &&
         input.startsWith("https://tokens.jup.ag/token/")
