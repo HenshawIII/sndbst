@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Icon } from "@iconify/react";
 import { toast } from "sonner";
 
-const TOKEN_ADDRESS = "11111111111111111111111111111111111111...";
+const TOKEN_ADDRESS = "5B1tFLMbvW6NAkddb3GNMm2TjJszpvCso76dR8empump";
 
 export default function StartTrading() {
   const [isCopied, setIsCopied] = useState(false);
@@ -42,12 +42,12 @@ export default function StartTrading() {
                   <span className="text-xs font-bold text-gray-400 px-2 py-1 rounded">
                     CA :
                   </span>
-                  <span className="text-gray-300 font-mono text-base block truncate blur-sm select-none">
+                  <span className="text-gray-300 font-mono text-base block truncate select-none">
                     {TOKEN_ADDRESS}
                   </span>
                 </div>
                 <button
-                  // onClick={copyToClipboard}
+                  onClick={copyToClipboard}
                   className="flex-shrink-0 p-2 hover:bg-[rgba(255,255,255,0.1)] rounded-lg transition-colors"
                 >
                   <Icon
@@ -60,16 +60,16 @@ export default function StartTrading() {
                 </button>
               </div>
               
-              <button
-                // href={`https://solscan.io/token/${TOKEN_ADDRESS}`}
-                // target="_blank"
+              <a
+                href={`https://solscan.io/token/${TOKEN_ADDRESS}`}
+                target="_blank"
                 
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3ebd4d] to-[#b71ec0]  text-white rounded-xl transition-colors w-full"
               >
                 <Icon icon="solar:chart-bold" width="24" height="24" />
                 View on Solscan
-              </button>
+              </a>
             </div>
           </div>
         </div>
